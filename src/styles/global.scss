@@ -1,0 +1,76 @@
+@import './variables';
+
+// Général
+
+* {
+    margin: 0;
+    font-family: $inter;
+}
+
+a {
+    text-decoration: none;
+    color: $white;
+    transition: $easeOut;
+
+    &:hover {
+        color: $orange;
+    }
+}
+
+
+// Header
+
+header {
+    background: $darkBlue;
+
+    >div {
+        max-width: $width;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+
+        .navbar {
+            display: flex;
+            gap: 20px;
+        }
+
+        >a {
+            font-size: 36px;
+            font-family: $fredoka;
+            font-weight: 600;
+
+            span {
+                color: $orange;
+                font-family: $fredoka;
+            }
+        }
+    }
+}
+
+// Footer
+
+footer {
+    background: $darkBlue;
+    >div {
+        max-width: $width;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 40px 20px;
+        >a {
+            font-size: 36px;
+            font-family: $fredoka;
+            font-weight: 600;
+            span {
+                color: $orange;
+                font-family: $fredoka;
+            }
+        }
+        p{
+            color: $white;
+        }
+    }
+}
