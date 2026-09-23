@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Search from '../components/Search'
+import '../styles/home.scss'
 
 const Home = () => {
   return (
@@ -12,11 +13,8 @@ const Home = () => {
         </div>
       </header>
       <main>
-        <section>
-          <div>
-            <h1>Découvre, participe et partage des événements.</h1>
-            <Search />
-          </div>
+        <section id='search'>
+          <Search />
         </section>
       </main>
       <Footer />

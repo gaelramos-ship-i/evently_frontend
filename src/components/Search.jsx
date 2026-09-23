@@ -28,20 +28,29 @@ const Search = () => {
     }
     return (
         <div>
-            <input
-                type="text"
-                placeholder="Recherche un événement..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-            />
-            <button onClick={getEvents}>Rechercher</button>
+            <div id="search-container">
+                <input
+                    type="text"
+                    placeholder="Recherche un événement..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+                <button onClick={getEvents}>Rechercher</button>
+            </div>
             {loading && <p>Chargement...</p>}
-            <div>
+            <div id="cards">
                 {events.getEvent?.map((event) => (
-                    <div key={event.id_event}>
-                        <h2>{event.name_event}</h2>
-                        <p>{event.description_event}</p>
-                    </div>
+                    <article key={event.id_event}>
+                        <a href="/details">
+                            <img src="/public/img/concert_random.jpg" alt="random-concert" />
+                            <div>
+                                <h2>{event.name_event}</h2>
+                                <p>{event.date_event}</p>
+                                <p>{event.address_event}</p>
+                                <p>{event.description_event}</p>
+                            </div>
+                        </a>
+                    </article>
                 ))}
             </div>
         </div>
