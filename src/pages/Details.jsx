@@ -62,10 +62,12 @@ function Details() {
             <main>
                 <section>
                     <div>
+                        <p>{event.type_event}</p>
                         <h1>{event.name_event}</h1>
-                        <p>{event.description_event}</p>
                         <p> Date : {event.date_event} </p>
                         <p> Lieu : {event.address_event} </p>
+                        <h2>A propos de l'événement</h2>
+                        <p>{event.description_event}</p>
                     </div>
                 </section>
             </main>
