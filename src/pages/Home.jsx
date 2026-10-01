@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Search from '../components/Search'
+import Account from '../components/account'
 import '../styles/home.scss'
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
       <main>
         <section id='search'>
           <Search />
+          <Account />
         </section>
       </main>
       <Footer />

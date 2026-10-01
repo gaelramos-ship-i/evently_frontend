@@ -41,7 +41,7 @@ const Search = () => {
             <div id="cards">
                 {events.getEvent?.map((event) => (
                     <article key={event.id_event}>
-                        <a href="/details">
+                        <a href={`/details?id=${event.id_event}`}>
                             <img src="/public/img/concert_random.jpg" alt="random-concert" />
                             <div>
                                 <h2>{event.name_event}</h2>
