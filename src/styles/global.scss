@@ -40,10 +40,16 @@ header {
             font-size: 36px;
             font-family: $fredoka;
             font-weight: 600;
-
+            transition: $easeOut;
             span {
                 color: $orange;
                 font-family: $fredoka;
+            }
+            &:hover{
+                color: $orange;
+                span{
+                    color: white;
+                }
             }
         }
     }
@@ -64,9 +70,16 @@ footer {
             font-size: 36px;
             font-family: $fredoka;
             font-weight: 600;
+            transition: $easeOut;
             span {
                 color: $orange;
                 font-family: $fredoka;
+            }
+            &:hover{
+                color: $orange;
+                span{
+                    color: white;
+                }
             }
         }
         p{

@@ -26,6 +26,14 @@ const Home = () => {
         const data = await response.json();
         setEvents(data.getEvent);
 
+        const date = new Date(data.getEvent.Date);
+        return date.toLocaleDateString('fr-FR', {
+          day: 'numeric',
+          month: 'short',
+          hour: '2-digit',
+          minute: '2-digit'
+        })
+
       } catch (error) {
         console.error(error);
       } finally {
@@ -45,6 +53,7 @@ const Home = () => {
       </header>
       <main>
         <section id='search'>
+          <Account />
           <div id="search-container">
             <input
               type="text"
@@ -53,24 +62,29 @@ const Home = () => {
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-          <div className="project-list">
+
+          <div id="project-list">
             {loading ? (
               <p>Chargement des événements...</p>
             ) : filteredEvents.length > 0 ? (
               filteredEvents.map((event) => (
                 <EventCard
                   key={event.id_event}
+                  id={event.id_event}
                   name={event.name_event}
-                  date={event.date_event}
+                  date={new Date(event.date_event).toLocaleDateString('fr-FR', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                  })}
                   address={event.address_event}
                   description={event.description_event}
                 />
               ))
             ) : (
-              <p>Aucun événement ne correspond à votre recherche.</p>
+              <p id='message'>Aucun événement ne correspond à votre recherche.</p>
             )}
           </div>
-          <Account />
         </section>
       </main>
       <Footer />
