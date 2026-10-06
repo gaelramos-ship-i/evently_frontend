@@ -1,0 +1,225 @@
+@import './variables';
+
+#favoris {
+    background: $offWhite;
+
+    >div {
+        max-width: $width;
+        margin: auto;
+        padding: 0 20px;
+
+        h1 {
+            font-size: 36px;
+            font-family: $fredoka;
+            font-weight: 600;
+            padding: 40px 0;
+            color: $darkBlue;
+        }
+
+        #cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        article {
+            background: $white;
+            border: 1px solid $sand;
+            padding: 10px;
+            border-radius: 20px;
+
+            a {
+                display: block;
+                color: $darkBlue;
+
+                p {
+                    font-family: $fredoka;
+                    padding: 4px 0;
+                }
+
+                h2 {
+                    font-family: $fredoka;
+                    font-weight: 600;
+                    padding: 10px 0;
+                }
+
+                &:hover {
+                    transform: scale(1.01);
+                }
+            }
+
+            img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+        }
+    }
+}
+
+#addEvent {
+
+    background-color: $offWhite;
+
+    >div {
+        max-width: 700px;
+        margin: auto;
+        padding: 50px 20px;
+
+        >div {
+            width: 100%;
+            padding: 30px;
+            background-color: $white;
+            border-radius: 15px;
+            // box-shadow: 0 8px 25px rgb(0 0 0 / 0.08);
+            border: 1px solid $sand;
+
+            h2 {
+                margin: 0 0 25px;
+                font-family: $fredoka;
+                color: $darkBlue;
+                font-size: 36px;
+                font-weight: 600;
+            }
+
+            .file {
+                display: block;
+
+                width: 100%;
+                margin-bottom: 15px;
+
+                padding: 10px;
+
+                box-sizing: border-box;
+
+                border: 1px dashed $sand;
+                border-radius: 8px;
+
+                background-color: $offWhite;
+
+                font-size: 14px;
+                cursor: pointer;
+
+                &:hover {
+                    border-color: $darkBlue;
+                }
+
+                &::file-selector-button {
+                    margin-right: 12px;
+                    padding: 9px 16px;
+
+                    border: none;
+                    border-radius: 7px;
+
+                    background-color: $orange;
+                    color: $white;
+
+                    font-size: 14px;
+                    font-weight: 500;
+
+                    cursor: pointer;
+
+                    transition: background-color 0.2s ease;
+                }
+
+                &:hover::file-selector-button {
+                    background-color: $darkBlue;
+                }
+            }
+
+            .preview {
+                display: block;
+                width: 100%;
+                height: 280px;
+                margin-bottom: 15px;
+                object-fit: cover;
+                border-radius: 10px;
+                box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+            }
+
+            .form {
+                display: block;
+                width: 100%;
+                height: 48px;
+                margin-bottom: 12px;
+
+                padding: 0 14px;
+
+                box-sizing: border-box;
+                border: 1px solid $sand;
+                border-radius: 8px;
+
+                background-color: $white;
+                color: $darkBlue;
+
+                font-family: inherit;
+                font-size: 16px;
+
+                outline: none;
+
+                transition:
+                    border-color 0.2s ease,
+                    box-shadow 0.2s ease;
+
+                &::placeholder {
+                    color: $blue;
+                }
+            }
+
+            .submit-button {
+                display: block;
+
+                width: 100%;
+                height: 48px;
+
+                margin-top: 5px;
+
+                border: none;
+                border-radius: 8px;
+
+                background-color: $orange;
+                color: $white;
+
+                font-family: inherit;
+                font-size: 16px;
+                font-weight: 600;
+
+                cursor: pointer;
+
+                transition:
+                    background-color 0.2s ease,
+                    opacity 0.2s ease;
+
+                &:hover:not(:disabled) {
+                    background-color: $darkBlue;
+                }
+
+                &:disabled {
+                    opacity: 0.5;
+                    cursor: not-allowed;
+                }
+            }
+
+            .green,
+            .red {
+                margin: 15px 0 0;
+                padding: 12px 15px;
+
+                border-radius: 8px;
+
+                font-size: 14px;
+            }
+
+            .green {
+                background-color: #ecfdf5;
+                color: #047857;
+            }
+
+            .red {
+                background-color: #fef2f2;
+                color: #b91c1c;
+            }
+        }
+    }
+}

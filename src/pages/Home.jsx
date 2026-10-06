@@ -10,9 +10,13 @@ const Home = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(false)
 
-  const filteredEvents = events.filter((event) =>
-    event.name_event?.toLowerCase().includes(search.toLowerCase())
-  )
+  const filteredEvents =
+    search.length >= 3
+      ? events.filter((event) =>
+        event.name_event?.toLowerCase().includes(search.toLowerCase())
+      )
+      : events;
+
   useEffect(() => {
     const getEvents = async () => {
       try {
@@ -25,14 +29,6 @@ const Home = () => {
         }
         const data = await response.json();
         setEvents(data.getEvent);
-
-        const date = new Date(data.getEvent.Date);
-        return date.toLocaleDateString('fr-FR', {
-          day: 'numeric',
-          month: 'short',
-          hour: '2-digit',
-          minute: '2-digit'
-        })
 
       } catch (error) {
         console.error(error);
