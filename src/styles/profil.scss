@@ -27,6 +27,7 @@
             border: 1px solid $sand;
             padding: 10px;
             border-radius: 20px;
+            position: relative;
 
             a {
                 display: block;
@@ -43,8 +44,22 @@
                     padding: 10px 0;
                 }
 
-                &:hover {
-                    transform: scale(1.01);
+                button {
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    width: 45px;
+                    height: 45px;
+                    border: none;
+                    border-radius: 50%;
+                    background: #ffffffa1;
+                    color: #351414;
+                    font-size: 26px;
+                    line-height: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
                 }
             }
 
@@ -53,6 +68,10 @@
                 height: 200px;
                 object-fit: cover;
                 border-radius: 10px;
+                transition: $easeOut;
+                &:hover {
+                    transform: scale(1.01);
+                }
             }
         }
     }

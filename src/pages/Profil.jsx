@@ -66,6 +66,40 @@ export default function Profil() {
         }
     }
 
+    // Permet de supprimer les favoris sur la page profil
+    const deleteFavorite = async (eventId) => {
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_BASE_URL}/fav/${eventId}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    }
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("Impossible de supprimer le favori");
+            }
+
+            const data = await response.json();
+
+            console.log("Favori supprimé :", data);
+
+            setFavorites((prevFavorites) =>
+                prevFavorites.filter(
+                    (favorite) => favorite.id_event !== eventId
+                )
+            );
+
+        } catch (err) {
+            setStatus({ type: 'error', message: err.message })
+        }
+    };
+
+    // Permet d'afficher les favoris 
     useEffect(() => {
         const API_URL = `${import.meta.env.VITE_BASE_URL}/fav/get`
         const getFav = async () => {
@@ -127,9 +161,15 @@ export default function Profil() {
                                     key={event.id_event}
                                     id={event.id_event}
                                     name={event.name_event}
-                                    date={event.date_event}
+                                    date={new Date(event.date_event).toLocaleDateString('fr-FR', {
+                                        day: 'numeric',
+                                        month: 'long',
+                                        year: 'numeric'
+                                    })}
                                     address={event.address_event}
                                     description={event.description_event}
+                                    showDelete={true}
+                                    onDeleteFavorite={deleteFavorite}
                                 />
                             ))}
                         </div>
