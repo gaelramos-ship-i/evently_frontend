@@ -18,6 +18,7 @@ export default function Profil() {
     const [name, setName] = useState('')
     const [address, setAddress] = useState('')
     const [date, setDate] = useState('')
+    const [type, setType] = useState('')
 
     const handleFile = (e) => {
         const f = e.target.files[0]
@@ -29,21 +30,45 @@ export default function Profil() {
 
     const handleUpload = async () => {
         const API_URL = `${import.meta.env.VITE_BASE_URL}/event/add`
-        if (!file || !name.trim()) return
+        if (!file ||
+            !name.trim() ||
+            !description.trim() ||
+            !address.trim() ||
+            !date ||
+            !type
+        ) {
+            setStatus({
+                type: 'error',
+                message: 'Veuillez remplir tous les champs obligatoires.'
+            })
+            return
+        }
+
         setLoading(true)
         setStatus(null)
 
-        const formData = new FormData()
-        formData.append('title', name.trim())
-        formData.append('image', file) // doit correspondre à upload.single('image')
-
         try {
+            console.log('type:', type)
+console.log('body:', {
+    name: name.trim(),
+    date,
+    description: description.trim(),
+    address,
+    type
+})
             const res = await fetch(API_URL, {
                 method: 'POST',
                 headers: {
+                    'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,
                 },
-                body: formData,
+                body: JSON.stringify({
+                    name: name.trim(),
+                    date,
+                    description: description.trim(),
+                    address,
+                    type
+                }),
             })
 
             const data = await res.json()
@@ -54,10 +79,44 @@ export default function Profil() {
             if (!res.ok)
                 throw new Error(data.message || 'Erreur serveur')
 
+            const idEvent = data.idEvent
+            if (!idEvent) {
+                throw new Error("L'ID de l'événement n'a pas été retourné par le serveur")
+            }
+
+            const formData = new FormData()
+
+            formData.append('image', file)
+
+            const imageRes = await fetch(`${import.meta.env.VITE_BASE_URL}/event/${idEvent}/image`, {
+                method: 'PATCH',
+                headers: { Authorization: `Bearer ${token}`, },
+                body: formData,
+            })
+
+            const imageData = await imageRes.json()
+
+            if (imageRes.status === 401) {
+                throw new Error('Non autorisé : token manquant ou invalide')
+            }
+
+            if (!imageRes.ok) {
+                throw new Error(imageData.message || "Erreur lors de l'upload de l'image")
+            }
+
             setStatus({
                 type: 'ok',
-                message: 'Upload réussi : ' + JSON.stringify(data)
+                message: 'Événement publié avec succès !'
             })
+
+            // Reset du formulaire 
+            setFile(null)
+            setPreview(null)
+            setName('')
+            setDesc('')
+            setAddress('')
+            setDate('')
+            setType('')
 
         } catch (err) {
             setStatus({ type: 'error', message: err.message })
@@ -170,6 +229,7 @@ export default function Profil() {
                                     description={event.description_event}
                                     showDelete={true}
                                     onDeleteFavorite={deleteFavorite}
+                                    image_event={event.image_event}
                                 />
                             ))}
                         </div>
@@ -204,6 +264,19 @@ export default function Profil() {
                                 value={description}
                                 onChange={(e) => setDesc(e.target.value)}
                             />
+                            <select
+                                className="form"
+                                value={type}
+                                onChange={(e) => setType(e.target.value)}
+                            >
+                                <option value="">Choisir un type</option>
+                                <option value="Concert">Concert</option>
+                                <option value="Festival">Festival</option>
+                                <option value="Exposition">Exposition</option>
+                                <option value="Cinéma">Cinéma</option>
+                                <option value="Conférence">Conférence</option>
+                                <option value="Gaming">Gaming</option>
+                            </select>
                             <input
                                 className='form'
                                 type="text"

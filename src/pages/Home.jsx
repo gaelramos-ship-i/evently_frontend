@@ -152,6 +152,7 @@ const Home = () => {
                   isFavorite={favorite.includes(event.id_event)}
                   onAddFavorite={addFavorite}
                   onDeleteFavorite={deleteFavorite}
+                  image_event={event.image_event}
                 />
               ))
             ) : (

@@ -1,4 +1,4 @@
-const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite, onDeleteFavorite, isFavorite = false, showDelete = false }) => {
+const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite, onDeleteFavorite, isFavorite = false, showDelete = false, image_event }) => {
 
     const handleFavorite = (e) => {
         e.preventDefault();
@@ -13,7 +13,8 @@ const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite
     return (
         <article>
             <a href={`/details?id=${id}`}>
-                <img src="/public/img/concert_random.jpg" alt="random-concert" />
+                <img src={`http://localhost:3000${image_event}`} alt="random-concert" />
+                
                 <div>
                     <h2>{name}</h2>
                     {showDelete ? (
