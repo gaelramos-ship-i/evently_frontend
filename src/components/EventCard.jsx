@@ -13,7 +13,7 @@ const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite
     return (
         <article>
             <a href={`/details?id=${id}`}>
-                <img src={`http://localhost:3000${image_event}`} alt="random-concert" />
+                <img src={`http://localhost:3000${image_event}`} alt={name} />
                 
                 <div>
                     <h2>{name}</h2>

@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { useSearchParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import '../styles/details.scss'
 
 function Details() {
     const [searchParams] = useSearchParams()
@@ -60,14 +61,17 @@ function Details() {
                 </div>
             </header>
             <main>
-                <section>
+                <section id='details'>
                     <div>
-                        <p>{event.type_event}</p>
-                        <h1>{event.name_event}</h1>
-                        <p> Date : {event.date_event} </p>
-                        <p> Lieu : {event.address_event} </p>
-                        <h2>A propos de l'événement</h2>
-                        <p>{event.description_event}</p>
+                        <div>
+                            <img src={`http://localhost:3000${event.image_event}`} alt={event.name} />
+                            <p className='type'>{event.type_event}</p>
+                            <h1>{event.name_event}</h1>
+                            <p> Date : {event.date_event} </p>
+                            <p> Lieu : {event.address_event} </p>
+                            <h2>A propos de l'événement</h2>
+                            <p>{event.description_event}</p>
+                        </div>
                     </div>
                 </section>
             </main>

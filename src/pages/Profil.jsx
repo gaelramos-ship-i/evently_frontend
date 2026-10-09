@@ -48,14 +48,6 @@ export default function Profil() {
         setStatus(null)
 
         try {
-            console.log('type:', type)
-console.log('body:', {
-    name: name.trim(),
-    date,
-    description: description.trim(),
-    address,
-    type
-})
             const res = await fetch(API_URL, {
                 method: 'POST',
                 headers: {
@@ -268,8 +260,9 @@ console.log('body:', {
                                 className="form"
                                 value={type}
                                 onChange={(e) => setType(e.target.value)}
+                                required
                             >
-                                <option value="">Choisir un type</option>
+                                <option value="">Choisir un type *</option>
                                 <option value="Concert">Concert</option>
                                 <option value="Festival">Festival</option>
                                 <option value="Exposition">Exposition</option>

@@ -1,0 +1,34 @@
+@import './variables';
+
+#details{
+    background: $offWhite;
+    >div{
+        max-width: $width;
+        margin: auto;
+        padding: 20px 40px;
+        >div{
+            .type{
+                background: $orange;
+                color: $white;
+                width: fit-content;
+                padding: 8px;
+                border-radius: 20px;
+                margin-top: 20px;
+            }
+            h1, h2{
+                font-family: $fredoka;
+                color: $darkBlue;
+                margin: 20px 0;
+            }
+            p{
+                font-family: $fredoka;
+            }
+            img{
+                width: 100%;
+                height: 400px;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+        }
+    }
+}
