@@ -7,6 +7,7 @@ import NotFound from './pages/NotFound'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import PrivateRoutes from './components/private'
+import Update from "./pages/Update";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Routes>
         <Route element={<PrivateRoutes />}>
           <Route path="/profil" element={<Profil />} />
+          <Route path="/update" element={<Update />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/details" element={<Details />} />

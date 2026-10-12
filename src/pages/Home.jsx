@@ -27,8 +27,10 @@ const Home = () => {
   const addFavorite = async (idUser, eventId) => {
     try {
       const token = localStorage.getItem("token")
-      if (!token)
-        navigate("/login")
+      if (!token) {
+        navigate("/login");
+        return;
+      }
 
       const response = await fetch(`${import.meta.env.VITE_BASE_URL}/fav/${eventId}`, {
         method: "POST",
@@ -70,11 +72,11 @@ const Home = () => {
         }
       );
 
+      const data = await response.json();
+
       if (!response.ok) {
         throw new Error(data.message || 'Erreur serveur')
       }
-
-      const data = await response.json();
 
       console.log("Favori supprimé :", data);
 
@@ -93,6 +95,7 @@ const Home = () => {
   // Permet d'afficher les événements disponibles
   useEffect(() => {
     const getEvents = async () => {
+      setLoading(true)
       try {
         const response = await fetch(
           `${import.meta.env.VITE_BASE_URL}/event`
@@ -105,7 +108,10 @@ const Home = () => {
         setEvents(data.getEvent);
 
       } catch (error) {
-        console.error(error);
+        setStatus({
+          type: 'error',
+          message: error.message
+        });
       } finally {
         setLoading(false);
       }
