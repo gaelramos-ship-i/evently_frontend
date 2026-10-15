@@ -1,0 +1,82 @@
+@import './variables';
+
+#profil {
+    background: $offWhite;
+    padding: 20px;
+    
+
+    >div {
+        max-width: $width;
+        margin: auto;
+        background: $white;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        border-radius: 20px;
+        align-items: center;
+        border: 1px solid $sand;
+
+        >div {
+            color: $darkBlue;
+            h1,
+            h3,
+            p {
+                font-family: $fredoka;
+                font-weight: 500;
+            }
+        }
+
+        #params {
+            #stats {
+                background: $offWhite;
+                
+                border-radius: 20px;
+                border: 1px solid $sand;
+
+                article+article {
+                    border-left: 1px solid #ddd;
+                    padding-left: 20px;
+                    
+                }
+                article {
+                    padding: 20px;
+                    p {
+                        font-size: 24px;
+                    }
+                }
+            }
+
+            >div {
+                display: flex;
+            }
+
+            div:nth-child(2) {
+                margin-top: 20px;
+                gap: 40px;
+
+                button:nth-child(1) {
+                    background: $offWhite;
+                    color: $darkBlue;
+                    border: 1px solid $sand;
+                }
+
+                button {
+                    border-radius: 10px;
+                    padding: 14px;
+                    border: none;
+                    background: $orange;
+                    color: $white;
+                    transition: $easeOut;
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+
+        button {
+            padding: 10px;
+        }
+    }
+}

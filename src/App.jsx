@@ -7,7 +7,8 @@ import NotFound from './pages/NotFound'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import PrivateRoutes from './components/private'
-import Update from "./pages/Update";
+import Create from "./pages/Create";
+import EditEvent from "./pages/EditEvent";
 
 const App = () => {
   return (
@@ -15,7 +16,8 @@ const App = () => {
       <Routes>
         <Route element={<PrivateRoutes />}>
           <Route path="/profil" element={<Profil />} />
-          <Route path="/update" element={<Update />} />
+          <Route path="/update" element={<EditEvent />} />
+          <Route path="/create" element={<Create />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/details" element={<Details />} />

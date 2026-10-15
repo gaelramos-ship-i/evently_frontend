@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import EventCard from '../components/EventCard'
 import '../styles/profil.scss'
 import EventUser from '../components/EventUser'
+import GetProfil from '../components/GetProfil'
 // import FormEvent from '../components/FormEvent'
 
 export default function Profil() {
@@ -93,6 +94,7 @@ export default function Profil() {
                 </div>
             </header>
             <main>
+                <GetProfil />
                 <section id='favoris'>
                     <div>
                         <h1>Mes favoris</h1>

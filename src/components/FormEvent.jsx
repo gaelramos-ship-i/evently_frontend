@@ -1,17 +1,20 @@
 import { useState } from "react"
+import '../styles/formEvent.scss'
 
-function FormEvent() {
+function FormEvent({ eventToEdit = null }) {
+    const isEditing = Boolean(eventToEdit)
+
     const token = localStorage.getItem('token')
 
     const [file, setFile] = useState(null)
     const [preview, setPreview] = useState(null)
     const [status, setStatus] = useState(null)
     const [loading, setLoading] = useState(false)
-    const [description, setDesc] = useState('')
-    const [name, setName] = useState('')
-    const [address, setAddress] = useState('')
-    const [date, setDate] = useState('')
-    const [type, setType] = useState('')
+    const [description, setDesc] = useState(eventToEdit?.description_event ?? '')
+    const [name, setName] = useState(eventToEdit?.name_event ?? '')
+    const [address, setAddress] = useState(eventToEdit?.address_event ?? '')
+    const [date, setDate] = useState(eventToEdit?.date_event ?? '')
+    const [type, setType] = useState(eventToEdit?.type_event ?? '')
 
     const handleFile = (e) => {
         const f = e.target.files[0]
@@ -22,13 +25,17 @@ function FormEvent() {
     }
 
     const handleUpload = async () => {
-        const API_URL = `${import.meta.env.VITE_BASE_URL}/event/add`
-        if (!file ||
+        const API_URL = isEditing
+            ? `${import.meta.env.VITE_BASE_URL}/event/${eventToEdit.idEvent ?? eventToEdit.id_event}`
+            : `${import.meta.env.VITE_BASE_URL}/event/add`
+
+        if (
             !name.trim() ||
             !description.trim() ||
             !address.trim() ||
             !date ||
-            !type
+            !type ||
+            (!isEditing && !file)
         ) {
             setStatus({
                 type: 'error',
@@ -42,7 +49,7 @@ function FormEvent() {
 
         try {
             const res = await fetch(API_URL, {
-                method: 'POST',
+                method: isEditing ? 'PATCH' : 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,
@@ -64,44 +71,55 @@ function FormEvent() {
             if (!res.ok)
                 throw new Error(data.message || 'Erreur serveur')
 
-            const idEvent = data.idEvent
+            const idEvent = isEditing
+                ? (eventToEdit.idEvent ?? eventToEdit.id_event)
+                : data.idEvent
+
             if (!idEvent) {
                 throw new Error("L'ID de l'événement n'a pas été retourné par le serveur")
             }
 
-            const formData = new FormData()
+            if (file) {
+                const formData = new FormData()
+                formData.append('image', file)
 
-            formData.append('image', file)
+                const imageRes = await fetch(
+                    `${import.meta.env.VITE_BASE_URL}/event/${idEvent}/image`,
+                    {
+                        method: 'PATCH',
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                        body: formData,
+                    }
+                )
 
-            const imageRes = await fetch(`${import.meta.env.VITE_BASE_URL}/event/${idEvent}/image`, {
-                method: 'PATCH',
-                headers: { Authorization: `Bearer ${token}`, },
-                body: formData,
-            })
+                const imageData = await imageRes.json()
 
-            const imageData = await imageRes.json()
-
-            if (imageRes.status === 401) {
-                throw new Error('Non autorisé : token manquant ou invalide')
-            }
-
-            if (!imageRes.ok) {
-                throw new Error(imageData.message || "Erreur lors de l'upload de l'image")
+                if (!imageRes.ok) {
+                    throw new Error(
+                        imageData.message || "Erreur lors de l'upload de l'image"
+                    )
+                }
             }
 
             setStatus({
                 type: 'ok',
-                message: 'Événement publié avec succès !'
+                message: isEditing
+                    ? 'Événement modifié avec succès !'
+                    : 'Événement publié avec succès !'
             })
 
             // Reset du formulaire 
-            setFile(null)
-            setPreview(null)
-            setName('')
-            setDesc('')
-            setAddress('')
-            setDate('')
-            setType('')
+            if (!isEditing) {
+                setFile(null)
+                setPreview(null)
+                setName('')
+                setDesc('')
+                setAddress('')
+                setDate('')
+                setType('')
+            }
 
         } catch (err) {
             setStatus({ type: 'error', message: err.message })
@@ -113,8 +131,11 @@ function FormEvent() {
     return (
         <section id='addEvent'>
             <div>
+                <a href="/profil">Retour à l'Accueil</a>
                 <div>
-                    <h2>Ajoute un événement ici !</h2>
+                    <h2>{isEditing
+                        ? 'Modifier mon événement'
+                        : 'Ajoute un événement ici !'}</h2>
                     <input
                         className='file'
                         type="file"
@@ -170,9 +191,13 @@ function FormEvent() {
                     <button
                         className='submit-button'
                         onClick={() => handleUpload()}
-                        disabled={!file || !name.trim() || loading}
+                        disabled={loading || !name.trim() || (!isEditing && !file)}
                     >
-                        {loading ? 'Envoi...' : 'Publier'}
+                        {loading
+                            ? 'Envoi...'
+                            : isEditing
+                                ? 'Enregistrer les modifications'
+                                : 'Publier'}
                     </button>
 
                     {status && (
