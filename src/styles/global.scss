@@ -34,6 +34,15 @@ header {
         .navbar {
             display: flex;
             gap: 20px;
+            align-items: center;
+            button{
+                border-radius: 20px;
+                padding: 6px;
+                border: 1px solid $blue;
+                background: $darkBlue;
+                color: $white;
+                cursor: pointer;
+            }
         }
 
         >a {

@@ -58,28 +58,28 @@
                     padding: 10px 0;
                 }
             }
-            
-            button {
-                    position: absolute;
-                    top: 20px;
-                    right: 20px;
-                    width: 45px;
-                    height: 45px;
-                    border: none;
-                    border-radius: 50%;
-                    background: #ffffffa1;
-                    color: #351414;
-                    font-size: 26px;
-                    line-height: 1;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    cursor: pointer;
 
-                    &:active {
-                        transform: scale(0.95);
-                    }
+            button {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                border: none;
+                border-radius: 50%;
+                background: #ffffffa1;
+                color: #351414;
+                font-size: 26px;
+                line-height: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+
+                &:active {
+                    transform: scale(0.95);
                 }
+            }
 
             img {
                 width: 100%;
@@ -97,30 +97,34 @@
 }
 
 #account {
-    background: linear-gradient(135deg,
-            $blue 0%,
-            lighten($blue, 8%) 50%,
-            $blue 100%);
-    // background: linear-gradient(135deg,
-    //         #304B78 0%,
-    //         #466893 65%,
-    //         #F47B38 100%);
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('/img/concert_random.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80vh;
 
     margin: auto;
     text-align: center;
-    padding: 60px 20px;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
 
     h1 {
-        font-family: $fredoka;
-        font-weight: 400;
-        color: $offWhite;
+        font-family: "Fredoka", sans-serif;
+        font-weight: 600;
+        color: #FBF6E9;
+        font-size: 50px;
+        width: 54%;
     }
 
     h2 {
         font-family: $fredoka;
         color: $offWhite;
         font-weight: 400;
-        font-size: 26px;
+        font-size: 40px;
         margin-bottom: 20px;
     }
 
@@ -136,156 +140,12 @@
             transform: scale(1.1);
         }
     }
+
+    >div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
 }
-
-// #account {
-//     position: relative;
-//     isolation: isolate;
-//     overflow: hidden;
-
-//     width: min(1120px, calc(100% - 32px));
-//     min-height: 380px;
-//     margin: 40px auto;
-//     padding: 70px 30px;
-
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-
-//     text-align: center;
-
-//     border-radius: 32px;
-
-//     background:
-//         radial-gradient(
-//             circle at 15% 20%,
-//             rgba(255, 255, 255, 0.12),
-//             transparent 30%
-//         ),
-//         radial-gradient(
-//             circle at 85% 80%,
-//             rgba($orange, 0.25),
-//             transparent 35%
-//         ),
-//         linear-gradient(
-//             135deg,
-//             $blue 0%,
-//             lighten($blue, 8%) 50%,
-//             $blue 100%
-//         );
-
-//     box-shadow:
-//         0 25px 60px rgba(20, 35, 60, 0.18),
-//         inset 0 1px 0 rgba(255, 255, 255, 0.12);
-
-//     // Décoration en haut à droite
-//     &::before {
-//         content: "";
-//         position: absolute;
-//         z-index: -1;
-
-//         width: 280px;
-//         height: 280px;
-
-//         top: -140px;
-//         right: -80px;
-
-//         border-radius: 50%;
-
-//         background: rgba(255, 255, 255, 0.06);
-//         backdrop-filter: blur(4px);
-//     }
-
-//     // Décoration en bas à gauche
-//     &::after {
-//         content: "";
-//         position: absolute;
-//         z-index: -1;
-
-//         width: 220px;
-//         height: 220px;
-
-//         bottom: -120px;
-//         left: -70px;
-
-//         border-radius: 50%;
-
-//         background: rgba($orange, 0.12);
-//     }
-
-//     h1 {
-//         max-width: 900px;
-
-//         margin: 0 0 18px;
-
-//         color: $offWhite;
-
-//         font-family: $fredoka;
-//         font-size: clamp(32px, 4vw, 56px);
-//         font-weight: 700;
-//         line-height: 1.1;
-//         letter-spacing: -1.5px;
-
-//         text-wrap: balance;
-//     }
-
-//     h2 {
-//         margin: 0 0 34px;
-
-//         color: rgba($offWhite, 0.78);
-
-//         font-family: $fredoka;
-//         font-size: clamp(18px, 2vw, 24px);
-//         font-weight: 400;
-//         line-height: 1.5;
-
-//         text-wrap: balance;
-//     }
-
-//     button {
-//         min-width: 190px;
-
-//         padding: 15px 28px;
-
-//         border: none;
-//         border-radius: 12px;
-
-//         background: $orange;
-//         color: #fff;
-
-//         font-family: $fredoka;
-//         font-size: 16px;
-//         font-weight: 600;
-
-//         cursor: pointer;
-
-//         box-shadow:
-//             0 10px 25px rgba($orange, 0.3),
-//             inset 0 1px 0 rgba(255, 255, 255, 0.2);
-
-//         transition:
-//             transform 0.25s ease,
-//             background 0.25s ease,
-//             box-shadow 0.25s ease;
-
-//         &:hover {
-//             transform: translateY(-3px);
-
-//             background: lighten($orange, 5%);
-
-//             box-shadow:
-//                 0 15px 30px rgba($orange, 0.4),
-//                 inset 0 1px 0 rgba(255, 255, 255, 0.25);
-//         }
-
-//         &:active {
-//             transform: translateY(-1px);
-//         }
-
-//         &:focus-visible {
-//             outline: 3px solid rgba(255, 255, 255, 0.8);
-//             outline-offset: 4px;
-//         }
-//     }
-// }

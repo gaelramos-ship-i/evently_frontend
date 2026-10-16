@@ -8,16 +8,15 @@
     >div {
         max-width: $width;
         margin: auto;
-        background: $white;
+        background: #fffbf6;
         padding: 20px;
-        display: flex;
-        justify-content: space-between;
         border-radius: 20px;
         align-items: center;
         border: 1px solid $sand;
 
         >div {
             color: $darkBlue;
+            margin-top: 20px;
             h1,
             h3,
             p {
@@ -29,8 +28,7 @@
         #params {
             #stats {
                 background: $offWhite;
-                
-                border-radius: 20px;
+                border-radius: 10px;
                 border: 1px solid $sand;
 
                 article+article {
@@ -51,7 +49,7 @@
             }
 
             div:nth-child(2) {
-                margin-top: 20px;
+                margin: 20px 0;
                 gap: 40px;
 
                 button:nth-child(1) {

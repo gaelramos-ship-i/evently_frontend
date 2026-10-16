@@ -134,7 +134,6 @@ export default function Profil() {
                         <EventUser />
                     </div>
                 </section>
-                {/* <FormEvent /> */}
             </main>
             <Footer />
         </>

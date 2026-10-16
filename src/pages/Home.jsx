@@ -12,16 +12,22 @@ const Home = () => {
   const [loading, setLoading] = useState(false)
   const [favorite, setFavorite] = useState([]);
   const [status, setStatus] = useState(null)
+  const [category, setCategory] = useState('Tous')
   const token = localStorage.getItem('token')
   const navigate = useNavigate()
 
-  // Filtrage de recherche
-  const filteredEvents =
-    search.length >= 3
-      ? events.filter((event) =>
-        event.name_event?.toLowerCase().includes(search.toLowerCase())
-      )
-      : events;
+  const filteredEvents = events.filter((event) => {
+    const matchesSearch =
+      search.length < 3 ||
+      event.name_event?.toLowerCase().includes(search.toLowerCase()) ||
+      event.description_event?.toLowerCase().includes(search.toLowerCase());
+
+    const matchesCategory =
+      category === "Tous" ||
+      event.type_event === category;
+
+    return matchesSearch && matchesCategory;
+  });
 
   // Permet d'ajouter un événement aux favoris
   const addFavorite = async (idUser, eventId) => {
@@ -131,12 +137,27 @@ const Home = () => {
         <section id='search'>
           <Account />
           <div id="search-container">
+            <h2>Explorer les événements !</h2>
             <input
               type="text"
               placeholder="Recherche un événement..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
+            <div className="filter">
+              {["Tous", "Concert", "Festival", "Cinéma", "Exposition", "Sport"].map(
+                (cat) => (
+                  <button
+                    key={cat}
+                    type="button"
+                    className={category === cat ? "active" : ""}
+                    onClick={() => setCategory(cat)}
+                  >
+                    {cat}
+                  </button>
+                )
+              )}
+            </div>
           </div>
 
           <div id="project-list">
