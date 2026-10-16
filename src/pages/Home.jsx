@@ -134,8 +134,8 @@ const Home = () => {
         </div>
       </header>
       <main>
+        <Account />
         <section id='search'>
-          <Account />
           <div id="search-container">
             <h2>Explorer les événements !</h2>
             <input
@@ -144,7 +144,7 @@ const Home = () => {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <div className="filter">
+            <div id="filter">
               {["Tous", "Concert", "Festival", "Cinéma", "Exposition", "Sport"].map(
                 (cat) => (
                   <button
@@ -159,6 +159,14 @@ const Home = () => {
               )}
             </div>
           </div>
+
+          {status && (
+            <p 
+            id="status-message"
+            className={status.type === 'ok' ? 'green' : 'red'}>
+              {status.message}
+            </p>
+          )}
 
           <div id="project-list">
             {loading ? (
@@ -184,11 +192,6 @@ const Home = () => {
               ))
             ) : (
               <p id='message'>Aucun événement ne correspond à votre recherche.</p>
-            )}
-            {status && (
-              <p className={status.type === 'ok' ? 'green' : 'red'}>
-                {status.message}
-              </p>
             )}
           </div>
         </section>
