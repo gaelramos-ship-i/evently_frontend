@@ -45,55 +45,55 @@ export default function Login() {
 
     return (
         <>
-        <header>
-        <div>
-          <a href="/">Event<span>ly</span></a>
-          <Navbar />
-        </div>
-      </header>
-        <div className="login-page">
-            <form className="login-form" onSubmit={handleSubmit}>
-                <h1>Connexion</h1>
-
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                />
-
+            <header>
                 <div>
+                    <a href="/">Event<span>ly</span></a>
+                    <Navbar />
+                </div>
+            </header>
+            <div className="login-page">
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <h1>Connexion</h1>
+
                     <input
-                        type="password"
-                        name="password"
-                        placeholder="Mot de passe"
-                        value={form.password}
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        value={form.email}
                         onChange={handleChange}
                         required
                     />
 
-                    {/* <p>
+                    <div>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Mot de passe"
+                            value={form.password}
+                            onChange={handleChange}
+                            required
+                        />
+
+                        {/* <p>
                         6 caractères min, avec majuscule, minuscule, chiffre et symbole.
                     </p> */}
-                </div>
+                    </div>
 
-                {error && <p>{error}</p>}
+                    {error && <p>{error}</p>}
 
-                <button type="submit" disabled={loading}>
-                    {loading ? 'Connexion...' : 'Se connecter'}
-                </button>
+                    <button type="submit" disabled={loading}>
+                        {loading ? 'Connexion...' : 'Se connecter'}
+                    </button>
 
-                <p>
-                    Pas encore inscrit ?{' '}
-                    <Link to="/register">
-                        S'inscrire
-                    </Link>
-                </p>
-            </form>
-        </div>
-        <Footer />
+                    <p>
+                        Pas encore inscrit ?{' '}
+                        <Link to="/register">
+                            S'inscrire
+                        </Link>
+                    </p>
+                </form>
+            </div>
+            <Footer />
         </>
     )
 }

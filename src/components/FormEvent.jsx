@@ -131,7 +131,7 @@ function FormEvent({ eventToEdit = null }) {
     return (
         <section id='addEvent'>
             <div>
-                <a href="/profil">Retour à l'Accueil</a>
+                <a href="/profil">&lt; Retour</a>
                 <div>
                     <h2>{isEditing
                         ? 'Modifier mon événement'
@@ -170,10 +170,10 @@ function FormEvent({ eventToEdit = null }) {
                         <option value="">Choisir un type</option>
                         <option value="Concert">Concert</option>
                         <option value="Festival">Festival</option>
-                        <option value="Exposition">Exposition</option>
                         <option value="Cinéma">Cinéma</option>
-                        <option value="Conférence">Conférence</option>
-                        <option value="Gaming">Gaming</option>
+                        <option value="Conférence">Exposition</option>
+                        <option value="Gaming">Sport</option>
+                        <option value="Autre">Autre</option>
                     </select>
                     <input
                         className='form'

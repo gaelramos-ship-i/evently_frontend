@@ -12,6 +12,8 @@ export default function Register() {
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
 
+  const [accepted, setAccepted] = useState()
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
@@ -82,6 +84,30 @@ export default function Register() {
           </div>
 
           {error && <p className="error">{error}</p>}
+
+          <div className="cgu-checkbox">
+            <div>
+              <input
+                type="checkbox"
+                id="cgu"
+                name="cgu"
+                checked={accepted}
+                onChange={(e) => setAccepted(e.target.checked)}
+                required
+              />
+
+              <label htmlFor="cgu">
+                J'ai lu et j'accepte les{' '}
+                <Link to="/cgu" target="_blank">
+                  Conditions générales d'utilisation
+                </Link>
+              </label>
+            </div>
+
+            <p> Vos données personnelles sont utilisées pour créer et gérer votre compte et assurer le
+              fonctionnement d’Evently. Pour en savoir plus sur les données collectées, leur utilisation, vos
+              droits, consultez notre Politique de confidentialité.</p>
+          </div>
 
           <button
             type="submit"

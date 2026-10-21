@@ -9,14 +9,15 @@
         max-width: $width;
         margin: auto;
         background: #fffbf6;
-        padding: 20px;
+        padding: 40px 20px;
         border-radius: 20px;
         align-items: center;
         border: 1px solid $sand;
+        display: flex;
+        justify-content: space-between;
 
         >div {
             color: $darkBlue;
-            margin-top: 20px;
             h1,
             h3,
             p {
@@ -24,6 +25,31 @@
                 font-weight: 500;
             }
         }
+
+        .btns {
+                margin: 20px 0;
+                gap: 20px;
+                display: flex;
+
+                button:nth-child(1) {
+                    background: $offWhite;
+                    color: $darkBlue;
+                    border: 1px solid $sand;
+                }
+
+                button {
+                    border-radius: 10px;
+                    padding: 14px;
+                    border: none;
+                    background: $orange;
+                    color: $white;
+                    transition: $easeOut;
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+            }
 
         #params {
             #stats {
@@ -48,29 +74,6 @@
                 display: flex;
             }
 
-            div:nth-child(2) {
-                margin: 20px 0;
-                gap: 40px;
-
-                button:nth-child(1) {
-                    background: $offWhite;
-                    color: $darkBlue;
-                    border: 1px solid $sand;
-                }
-
-                button {
-                    border-radius: 10px;
-                    padding: 14px;
-                    border: none;
-                    background: $orange;
-                    color: $white;
-                    transition: $easeOut;
-
-                    &:hover {
-                        transform: scale(1.1);
-                    }
-                }
-            }
         }
 
         button {

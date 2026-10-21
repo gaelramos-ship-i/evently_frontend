@@ -97,7 +97,7 @@ export default function Profil() {
                 <GetProfil />
                 <section id='favoris'>
                     <div>
-                        <h1>Mes favoris</h1>
+                        <h2>Mes favoris</h2>
 
                         {loading && <p>Chargement des favoris...</p>}
                         {error && <p>{error}</p>}

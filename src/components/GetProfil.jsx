@@ -64,6 +64,14 @@ function GetProfil() {
                 <div>
                     <h1>Bonjour, {user.name} !</h1>
                     <p>Partager des événements, retrouver vos favoris et organiser vos prochaines sorties !</p>
+                    <div className="btns">
+                        <button onClick={() => navigate("/updateProfil")}>
+                            Modifier le profil
+                        </button>
+                        <button onClick={() => navigate("/create")}>
+                            Créer un événement
+                        </button>
+                    </div>
                 </div>
                 <div id="params">
                     <div id="stats">
@@ -75,12 +83,6 @@ function GetProfil() {
                             <p>{favorites.length}</p>
                             <h3>Favoris enregistrés</h3>
                         </article>
-                    </div>
-                    <div>
-                        <button>Modifier le profil</button>
-                        <button onClick={() => navigate("/create")}>
-                            Créer un événement
-                        </button>
                     </div>
                 </div>
             </div>

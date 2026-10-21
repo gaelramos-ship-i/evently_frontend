@@ -1,9 +1,20 @@
+import { Link } from "react-router-dom"
+
 const Footer = () => {
     return (
         <footer>
             <div>
                 <a href="/">Event<span>ly</span></a>
-                <p>© Copyrigth 2026 - Evently</p>
+                <div id="documentsLegaux">
+                    <p>
+                        <Link to="/mentions-legales">
+                            Mentions légales
+                        </Link> | <Link to="/cgu">
+                            CGU et politique de confidentialité
+                        </Link>
+                    </p>
+                </div>
+                <p>© Copyright {new Date().getFullYear()} - Evently</p>
             </div>
         </footer>
     )

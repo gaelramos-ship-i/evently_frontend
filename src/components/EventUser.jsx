@@ -80,6 +80,7 @@ function EventUser() {
                         description={event.description_event}
                         image_event={event.image_event}
                         showUpdate={true}
+                        showFavorite={false}
                         onUpdatePage={updateEvent}
                     />
                 ))}

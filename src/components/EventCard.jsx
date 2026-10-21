@@ -1,4 +1,4 @@
-const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite, onDeleteFavorite, isFavorite = false, showDelete = false, image_event, showUpdate = false, onUpdatePage }) => {
+const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite, onDeleteFavorite, isFavorite = false, showDelete = false, image_event, showUpdate = false, onUpdatePage, showFavorite = true }) => {
 
     const handleFavorite = (e) => {
         e.preventDefault();
@@ -38,7 +38,7 @@ const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite
                     Modifier
                 </button>
             )}
-            {showDelete ? (
+            {showDelete && (
                 <button
                     type="button"
                     className="delete-button"
@@ -50,7 +50,8 @@ const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite
                 >
                     🗑
                 </button>
-            ) : (
+            )}
+            {showFavorite && !showDelete && (
                 <button
                     type="button"
                     className="favorite-button"
@@ -59,6 +60,7 @@ const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite
                     {isFavorite ? "♥" : "♡"}
                 </button>
             )}
+
         </article>
     )
 }

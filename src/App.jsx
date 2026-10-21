@@ -9,6 +9,7 @@ import Register from './pages/Register'
 import PrivateRoutes from './components/private'
 import Create from "./pages/Create";
 import EditEvent from "./pages/EditEvent";
+import EditProfil from "./pages/EditProfil";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route element={<PrivateRoutes />}>
           <Route path="/profil" element={<Profil />} />
           <Route path="/update" element={<EditEvent />} />
+          <Route path="/updateProfil" element={<EditProfil />} />
           <Route path="/create" element={<Create />} />
         </Route>
         <Route path="/" element={<Home />} />

@@ -4,7 +4,7 @@ import { HashLink } from "react-router-hash-link";
 function Account() {
     const navigate = useNavigate()
     return (
-        <div id="account">
+        <section id="account">
             <div>
                 <h1>Découvre et partage les événements près de chez toi</h1>
                 <h2>Tu organises un événement ?</h2>
@@ -17,7 +17,7 @@ function Account() {
                     </button>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 

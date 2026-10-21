@@ -96,7 +96,7 @@
 
 
     // Message d'erreur
-    > p {
+    >p {
         margin: 1rem 0;
 
         color: $orange;
@@ -152,7 +152,7 @@
 
 
     // Inscription
-    > p:last-child {
+    >p:last-child {
         margin-top: 1.5rem;
         margin-bottom: 0;
 
@@ -176,26 +176,6 @@
                 color: $white;
                 text-decoration: underline;
             }
-        }
-    }
-}
-
-
-@media (max-width: 480px) {
-
-    .login-page {
-        padding: 1rem;
-    }
-
-
-    .login-form {
-        padding: 2rem 1.5rem;
-
-        border-radius: 20px;
-
-
-        h1 {
-            font-size: 2rem;
         }
     }
 }
