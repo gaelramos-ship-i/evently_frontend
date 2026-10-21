@@ -84,13 +84,15 @@ export default function Login() {
                     <button type="submit" disabled={loading}>
                         {loading ? 'Connexion...' : 'Se connecter'}
                     </button>
-
                     <p>
                         Pas encore inscrit ?{' '}
                         <Link to="/register">
                             S'inscrire
                         </Link>
                     </p>
+                    <Link to="/forgot-password">
+                        Mot de passe oublié ?
+                    </Link>
                 </form>
             </div>
             <Footer />

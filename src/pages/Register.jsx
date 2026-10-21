@@ -86,7 +86,10 @@ export default function Register() {
           {error && <p className="error">{error}</p>}
 
           <div className="cgu-checkbox">
-            <div>
+            <p> Vos données personnelles sont utilisées pour créer et gérer votre compte et assurer le
+              fonctionnement d’Evently. Pour en savoir plus sur les données collectées, leur utilisation, vos
+              droits, consultez notre Politique de confidentialité.</p>
+              <div>
               <input
                 type="checkbox"
                 id="cgu"
@@ -103,10 +106,6 @@ export default function Register() {
                 </Link>
               </label>
             </div>
-
-            <p> Vos données personnelles sont utilisées pour créer et gérer votre compte et assurer le
-              fonctionnement d’Evently. Pour en savoir plus sur les données collectées, leur utilisation, vos
-              droits, consultez notre Politique de confidentialité.</p>
           </div>
 
           <button

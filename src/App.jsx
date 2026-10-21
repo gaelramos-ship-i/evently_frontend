@@ -10,6 +10,8 @@ import PrivateRoutes from './components/private'
 import Create from "./pages/Create";
 import EditEvent from "./pages/EditEvent";
 import EditProfil from "./pages/EditProfil";
+import ResetPassword from "./pages/ResetPassword";
+import ForgotPassword from "./pages/ForgotPassword";
 
 const App = () => {
   return (
@@ -25,6 +27,8 @@ const App = () => {
         <Route path="/details" element={<Details />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
