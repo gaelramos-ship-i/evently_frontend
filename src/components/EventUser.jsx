@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
 import EventCard from "./EventCard"
 import { useNavigate } from "react-router-dom"
+import ModalConfirm from "./ModalConfirm"
 
 function EventUser() {
     const [events, setEvents] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [eventToDelete, setEventToDelete] = useState(null)
+    const [deleting, setDeleting] = useState(false)
 
     const navigate = useNavigate()
 
@@ -52,18 +55,68 @@ function EventUser() {
         navigate(`/update?id=${id}`)
     }
 
-    const deleteEvent = async (id) => {
+    // const deleteEvent = async (id) => {
+
+    //     const confirmDelete = window.confirm(
+    //         "Êtes-vous sûr de vouloir supprimer définitivement cet événement ?"
+    //     );
+
+
+    //     if (!confirmDelete) {
+    //         return;
+    //     }
+    //     const token = localStorage.getItem("token")
+
+    //     if (!token) {
+    //         setError("Vous devez être connecté.")
+    //         setLoading(false)
+    //         return
+    //     }
+
+    //     try {
+    //         const response = await fetch(
+    //             `${import.meta.env.VITE_BASE_URL}/event/${id}`,
+    //             {
+    //                 method: "DELETE",
+    //                 headers: {
+    //                     Authorization: `Bearer ${token}`,
+    //                 },
+    //             }
+    //         )
+
+    //         if (!response.ok) {
+    //             throw new Error("Impossible de supprimer cet événement.");
+    //         }
+
+    //         setEvents((prevEvents) =>
+    //             prevEvents.filter((event) => event.id_event !== id)
+    //         );
+
+    //     } catch (err) {
+    //         setError(err.message)
+    //     }
+    // }
+
+    const askDeleteEvent = (id) => {
+        setEventToDelete(id)
+    }
+
+    const deleteEvent = async () => {
+        if (eventToDelete === null || deleting) return
+
         const token = localStorage.getItem("token")
 
         if (!token) {
             setError("Vous devez être connecté.")
-            setLoading(false)
+            setEventToDelete(null)
             return
         }
 
+        setDeleting(true)
+
         try {
             const response = await fetch(
-                `${import.meta.env.VITE_BASE_URL}/event/${id}`,
+                `${import.meta.env.VITE_BASE_URL}/event/${eventToDelete}`,
                 {
                     method: "DELETE",
                     headers: {
@@ -71,17 +124,23 @@ function EventUser() {
                     },
                 }
             )
-            
+
             if (!response.ok) {
-                throw new Error("Impossible de supprimer cet événement.");
+                throw new Error("Impossible de supprimer cet événement.")
             }
 
             setEvents((prevEvents) =>
-                prevEvents.filter((event) => event.id_event !== id)
-            );
+                prevEvents.filter(
+                    (event) => event.id_event !== eventToDelete
+                )
+            )
+
+            setEventToDelete(null)
 
         } catch (err) {
             setError(err.message)
+        } finally {
+            setDeleting(false)
         }
     }
 
@@ -116,9 +175,20 @@ function EventUser() {
                         showDelEvent={true}
                         showFavorite={false}
                         onUpdatePage={updateEvent}
-                        onDeleteEvent={deleteEvent}
+                        onDeleteEvent={askDeleteEvent}
                     />
                 ))}
+                    <ModalConfirm
+                        isOpen={eventToDelete !== null}
+                        eventName={
+                            events.find(
+                                (event) => event.id_event === eventToDelete
+                            )?.name_event || ""
+                        }
+                        onCancel={() => setEventToDelete(null)}
+                        onConfirm={deleteEvent}
+                        loading={deleting}
+                    />
                 </div>)}
         </div>
     )
