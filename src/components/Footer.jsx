@@ -8,8 +8,8 @@ const Footer = () => {
                 <div id="documentsLegaux">
                     <p>
                         <Link to="/mentions-legales">
-                            Mentions légales
-                        </Link> | <Link to="/cgu">
+                            Mentions légales |
+                        </Link> <Link to="/cgu">
                             CGU et politique de confidentialité
                         </Link>
                     </p>

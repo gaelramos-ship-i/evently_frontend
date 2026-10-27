@@ -8,7 +8,8 @@
         margin: auto;
         padding: 0 20px;
 
-        h1, >h2 {
+        h1,
+        >h2 {
             font-size: 36px;
             font-family: $fredoka;
             font-weight: 600;
@@ -20,6 +21,12 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 40px;
+
+            button:nth-child(3) {
+                border-radius: 20px;
+                margin-left: 10px;
+                background: $blue;
+            }
         }
 
         article {
@@ -81,6 +88,7 @@
 
 #eventUser {
     padding-bottom: 40px;
+
     >h2 {
         font-size: 36px;
         font-family: $fredoka;
@@ -88,12 +96,118 @@
         padding: 40px 0;
         color: $darkBlue;
     }
-    button{
+
+    button {
         border-radius: 20px;
         border: none;
         padding: 10px;
         background: $orange;
         color: $white;
         margin-top: 10px;
+    }
+}
+
+#profil {
+    background: $offWhite;
+    padding: 20px;
+
+
+    >div {
+        max-width: $width;
+        margin: auto;
+        background: #fffbf6;
+        padding: 20px;
+        border-radius: 20px;
+        align-items: center;
+        border: 1px solid $sand;
+        display: flex;
+        justify-content: space-between;
+
+        >div {
+            color: $darkBlue;
+
+            h1,
+            h3,
+            p {
+                font-family: $fredoka;
+                font-weight: 500;
+            }
+        }
+
+        .btns {
+            margin: 20px 0;
+            gap: 20px;
+            display: flex;
+
+            button:nth-child(1) {
+                background: $offWhite;
+                color: $darkBlue;
+                border: 1px solid $sand;
+            }
+
+            button {
+                border-radius: 10px;
+                padding: 14px;
+                border: none;
+                background: $orange;
+                color: $white;
+                transition: $easeOut;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+
+        #params {
+            #stats {
+                background: $offWhite;
+                border-radius: 10px;
+                border: 1px solid $sand;
+
+                article+article {
+                    border-left: 1px solid #ddd;
+                    padding-left: 20px;
+
+                }
+
+                article {
+                    padding: 20px;
+
+                    p {
+                        font-size: 24px;
+                    }
+                }
+            }
+
+            >div {
+                display: flex;
+            }
+
+        }
+
+        button {
+            padding: 10px;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #favoris>div #cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #profil>div {
+        flex-direction: column;
+    }
+
+    #profil>div #params #stats article {
+        padding: 10px;
+    }
+
+    #favoris > div #cards-container {
+        grid-template-columns: 1fr;
     }
 }

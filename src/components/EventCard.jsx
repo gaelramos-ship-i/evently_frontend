@@ -1,4 +1,4 @@
-const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite, onDeleteFavorite, isFavorite = false, showDelete = false, image_event, showUpdate = false, onUpdatePage, showFavorite = true }) => {
+const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite, onDeleteFavorite, isFavorite = false, showDelete = false, image_event, showUpdate = false, showDelEvent = false, onUpdatePage, onDeleteEvent, showFavorite = true }) => {
 
     const handleFavorite = (e) => {
         e.preventDefault();
@@ -18,6 +18,14 @@ const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite
             onUpdatePage(id)
         }
     }
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+        if (showDelEvent) {
+            onDeleteEvent(id)
+        }
+    }
+
     return (
         <article>
             <a href={`/details?id=${id}`}>
@@ -36,6 +44,14 @@ const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite
                     onClick={handleEdit}
                 >
                     Modifier
+                </button>
+            )}
+            {showDelEvent && (
+                <button
+                    type="button"
+                    onClick={handleDelete}
+                >
+                    Supprimer
                 </button>
             )}
             {showDelete && (

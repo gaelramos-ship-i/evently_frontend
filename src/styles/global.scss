@@ -36,7 +36,8 @@ header {
             display: flex;
             gap: 20px;
             align-items: center;
-            button{
+
+            button {
                 border-radius: 20px;
                 padding: 6px;
                 border: 1px solid $blue;
@@ -107,11 +108,31 @@ footer {
             font-weight: 400;
         }
 
-        #documentsLegaux{
+        #documentsLegaux {
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 40px;
         }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+
+    footer>div p {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    header>div {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    footer>div {
+        flex-direction: column;
+        gap: 40px;
     }
 }

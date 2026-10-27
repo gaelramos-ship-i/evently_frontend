@@ -52,6 +52,39 @@ function EventUser() {
         navigate(`/update?id=${id}`)
     }
 
+    const deleteEvent = async (id) => {
+        const token = localStorage.getItem("token")
+
+        if (!token) {
+            setError("Vous devez être connecté.")
+            setLoading(false)
+            return
+        }
+
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_BASE_URL}/event/${id}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+            
+            if (!response.ok) {
+                throw new Error("Impossible de supprimer cet événement.");
+            }
+
+            setEvents((prevEvents) =>
+                prevEvents.filter((event) => event.id_event !== id)
+            );
+
+        } catch (err) {
+            setError(err.message)
+        }
+    }
+
     if (loading) {
         return <p>Chargement...</p>
     }
@@ -80,8 +113,10 @@ function EventUser() {
                         description={event.description_event}
                         image_event={event.image_event}
                         showUpdate={true}
+                        showDelEvent={true}
                         showFavorite={false}
                         onUpdatePage={updateEvent}
+                        onDeleteEvent={deleteEvent}
                     />
                 ))}
                 </div>)}
