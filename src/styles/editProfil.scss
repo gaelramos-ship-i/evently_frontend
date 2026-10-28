@@ -1,0 +1,141 @@
+
+@import './variables';
+
+.edit-profil {
+    background-color: $offWhite;
+    min-height: 70vh;
+
+    a{
+        color: $darkBlue;
+    }
+    
+    #updateEvent {
+        > div {
+            max-width: 700px;
+            margin: auto;
+            padding: 50px 20px;
+
+            h1 {
+                margin: 0 0 25px;
+                font-family: $fredoka;
+                color: $darkBlue;
+                font-size: 36px;
+                font-weight: 600;
+            }
+
+            form {
+                width: 100%;
+                padding: 30px;
+                box-sizing: border-box;
+
+                background-color: $white;
+                border-radius: 15px;
+                border: 1px solid $sand;
+
+                .form-group {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                    width: 100%;
+                    margin-bottom: 20px;
+
+                    label {
+                        color: $darkBlue;
+                        font-size: 16px;
+                        font-weight: 500;
+                    }
+
+                    input {
+                        display: block;
+                        width: 100%;
+                        height: 48px;
+                        padding: 0 14px;
+                        box-sizing: border-box;
+
+                        border: 1px solid $sand;
+                        border-radius: 8px;
+
+                        background-color: $white;
+                        color: $darkBlue;
+
+                        font-family: inherit;
+                        font-size: 16px;
+
+                        outline: none;
+
+                        transition:
+                            border-color 0.2s ease,
+                            box-shadow 0.2s ease;
+
+                        &:focus {
+                            border-color: $blue;
+                            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+                        }
+                    }
+                }
+
+                button {
+                    display: block;
+                    width: 100%;
+                    min-height: 48px;
+                    margin-top: 5px;
+                    padding: 12px 20px;
+
+                    border: none;
+                    border-radius: 8px;
+
+                    background-color: $orange;
+                    color: $white;
+
+                    font-family: inherit;
+                    font-size: 16px;
+                    font-weight: 600;
+
+                    cursor: pointer;
+
+                    transition:
+                        background-color 0.2s ease,
+                        opacity 0.2s ease;
+
+                    &:hover:not(:disabled) {
+                        background-color: $darkBlue;
+                    }
+
+                    &:disabled {
+                        opacity: 0.5;
+                        cursor: not-allowed;
+                    }
+                }
+
+                p[role="status"] {
+                    margin: 15px 0 0;
+                    padding: 12px 15px;
+
+                    border-radius: 8px;
+                    background-color: #ecfdf5;
+                    color: #047857;
+
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .edit-profil {
+        #updateEvent {
+            > div {
+                padding: 35px 15px;
+
+                h1 {
+                    font-size: 28px;
+                }
+
+                form {
+                    padding: 20px;
+                }
+            }
+        }
+    }
+}

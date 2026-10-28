@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
+import '../styles/editProfil.scss'
 
 function EditProfil() {
     const [name, setName] = useState("");
@@ -91,41 +92,45 @@ function EditProfil() {
                 </div>
             </header>
             <main className="edit-profil">
-                <h1>Modifier mon profil</h1>
+                <section id="updateEvent">
+                    <div>
+                        <a href="/profil">&lt; Retour</a>
+                        {loadingProfil ? (
+                            <p>Chargement du profil...</p>
+                        ) : (
+                            <form onSubmit={handleSubmit}>
+                                <div className="form-group">
+                                    <h1>Modifier mon profil</h1>
+                                    <label htmlFor="nom">Nom</label>
+                                    <input
+                                        type="text"
+                                        id="nom"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        required
+                                    />
+                                </div>
 
-                {loadingProfil ? (
-                    <p>Chargement du profil...</p>
-                ) : (
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="nom">Nom</label>
-                            <input
-                                type="text"
-                                id="nom"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                required
-                            />
-                        </div>
+                                <div className="form-group">
+                                    <label htmlFor="email">Adresse e-mail</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                    />
+                                </div>
 
-                        <div className="form-group">
-                            <label htmlFor="email">Adresse e-mail</label>
-                            <input
-                                type="email"
-                                id="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-                        </div>
+                                <button type="submit" disabled={loading}>
+                                    {loading ? "Enregistrement..." : "Enregistrer"}
+                                </button>
 
-                        <button type="submit" disabled={loading}>
-                            {loading ? "Enregistrement..." : "Enregistrer"}
-                        </button>
-
-                        {message && <p role="status">{message}</p>}
-                    </form>
-                )}
+                                {message && <p role="status">{message}</p>}
+                            </form>
+                        )}
+                    </div>
+                </section>
             </main>
             <Footer />
         </>
