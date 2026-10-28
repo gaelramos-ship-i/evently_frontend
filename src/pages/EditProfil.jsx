@@ -20,7 +20,7 @@ function EditProfil() {
                 }
 
                 const response = await fetch(
-                    "http://localhost:3000/api/v1/auth/user",
+                    `${import.meta.env.VITE_BASE_URL}/auth/user`,
                     {
                         method: "GET",
                         headers: {
@@ -58,7 +58,7 @@ function EditProfil() {
         try {
             const token = localStorage.getItem("token")
 
-            const response = await fetch("http://localhost:3000/api/v1/auth/update-profil", {
+            const response = await fetch(`${import.meta.env.VITE_BASE_URL}/auth/update-profil`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

@@ -64,7 +64,7 @@ function Details() {
                 <section id='details'>
                     <div>
                         <div>
-                            <img src={`http://localhost:3000${event.image_event}`} alt={event.name} />
+                            <img src={`${import.meta.env.VITE_BASE_URL}${event.image_event}`} alt={event.name} />
                             <p className='type'>{event.type_event}</p>
                             <h1>{event.name_event}</h1>
                             <p> Date : {event.date_event} </p>
