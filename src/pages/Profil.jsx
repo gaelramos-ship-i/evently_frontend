@@ -34,10 +34,6 @@ export default function Profil() {
                 throw new Error("Impossible de supprimer le favori");
             }
 
-            const data = await response.json();
-
-            console.log("Favori supprimé :", data);
-
             setFavorites((prevFavorites) =>
                 prevFavorites.filter(
                     (favorite) => favorite.id_event !== eventId

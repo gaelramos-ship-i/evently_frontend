@@ -56,8 +56,6 @@ const Home = () => {
       if (!response.ok) {
         throw new Error(data.message || 'Erreur serveur')
       }
-
-      console.log("Favori ajouté :", data);
       setFavorite((prev) => [...prev, eventId]);
     } catch (err) {
       setStatus({ type: 'error', message: err.message })
@@ -83,8 +81,6 @@ const Home = () => {
       if (!response.ok) {
         throw new Error(data.message || 'Erreur serveur')
       }
-
-      console.log("Favori supprimé :", data);
 
       // On retire la card de la liste
       setFavorite((prevFavorites) =>

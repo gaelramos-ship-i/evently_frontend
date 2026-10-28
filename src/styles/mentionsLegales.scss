@@ -1,0 +1,257 @@
+@import './variables';
+
+.legal-page {
+    min-height: 100vh;
+    padding: 60px 20px;
+    background-color: $offWhite;
+    font-family: $inter;
+    color: $darkBlue;
+}
+
+.legal-container {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 50px;
+    background-color: $white;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba($darkBlue, 0.08);
+
+    h1 {
+        margin: 0 0 15px;
+        font-family: $fredoka;
+        font-size: 2.8rem;
+        font-weight: 600;
+        text-align: center;
+        color: $darkBlue;
+    }
+
+    .legal-intro {
+        margin: 0 auto 45px;
+        max-width: 650px;
+        text-align: center;
+        font-size: 1rem;
+        line-height: 1.8;
+        color: $blue;
+    }
+}
+
+// Sections
+.legal-section {
+    padding: 30px 0;
+    border-bottom: 1px solid rgba($sand, 0.6);
+
+    &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    h2 {
+        margin: 0 0 22px;
+        // padding-left: 15px;
+        // border-left: 5px solid $orange;
+        font-family: $inter;
+        font-size: 1.5rem;
+        font-weight: 500;
+        line-height: 1.4;
+        color: $darkBlue;
+    }
+
+    h3 {
+        margin: 25px 0 10px;
+        font-family: $inter;
+        font-size: 1rem;
+        font-weight: 500;
+        color: $blue;
+    }
+
+    p,
+    li {
+        font-family: $inter;
+        font-size: 0.95rem;
+        line-height: 1.9;
+        color: $darkBlue;
+        overflow-wrap: anywhere;
+    }
+
+    p {
+        margin: 12px 0;
+    }
+
+    strong {
+        font-weight: 650;
+        color: $darkBlue;
+    }
+
+    ul {
+        margin: 15px 0;
+        padding-left: 25px;
+    }
+
+    li {
+        padding-left: 5px;
+        margin-bottom: 8px;
+    }
+
+    a {
+        color: $orange;
+        font-weight: 500;
+        text-decoration: none;
+        overflow-wrap: anywhere;
+        transition: color $easeOut;
+
+        &:hover {
+            color: $blue;
+            text-decoration: underline;
+        }
+    }
+}
+
+// Encadré d'information sur les données personnelles
+.legal-notice {
+    margin-top: 25px;
+    padding: 22px 25px;
+    background-color: $offWhite;
+    border-left: 5px solid $orange;
+    border-radius: 0 10px 10px 0;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: $darkBlue;
+
+    a, button {
+        color: $orange;
+        font-weight: 600;
+        text-decoration: underline;
+        transition: color $easeOut;
+        border: none;
+        background-color: $offWhite;
+
+        &:hover {
+            color: $blue;
+        }
+    }
+}
+
+// En-tête de la page
+.legal-header {
+    background-color: $darkBlue;
+    padding: 20px;
+
+    > div {
+        max-width: $width;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 25px;
+    }
+
+    > div > a {
+        font-family: $fredoka;
+        font-size: 2rem;
+        font-weight: 600;
+        color: $white;
+        text-decoration: none;
+        transition: opacity $easeOut;
+
+        span {
+            color: $orange;
+        }
+
+        &:hover {
+            opacity: 0.85;
+        }
+    }
+}
+
+// Tablettes et mobiles
+@media screen and (max-width: 768px) {
+    .legal-page {
+        padding: 35px 16px;
+    }
+
+    .legal-container {
+        padding: 30px 25px;
+        border-radius: 12px;
+
+        h1 {
+            font-size: 2.2rem;
+        }
+
+        .legal-intro {
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+    }
+
+    .legal-section {
+        padding: 25px 0;
+
+        h2 {
+            font-size: 1.45rem;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+        }
+
+        p,
+        li {
+            font-size: 0.9rem;
+        }
+    }
+
+    .legal-notice {
+        padding: 18px;
+    }
+
+    .legal-header {
+        > div {
+            flex-wrap: wrap;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .legal-page {
+        padding: 20px 10px;
+    }
+
+    .legal-container {
+        padding: 25px 18px;
+
+        h1 {
+            font-size: 1.9rem;
+        }
+
+        .legal-intro {
+            font-size: 0.9rem;
+        }
+    }
+
+    .legal-section {
+        h2 {
+            font-size: 1.3rem;
+            padding-left: 10px;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+        }
+    }
+
+    .legal-notice {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+
+    .legal-header {
+        padding: 15px;
+
+        > div {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+    }
+}
