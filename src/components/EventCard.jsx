@@ -29,7 +29,7 @@ const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite
     return (
         <article>
             <a href={`/details?id=${id}`}>
-                <img src={`https://eventlybackend.onrender.com/${image_event}`} alt={name} />
+                <img src={`https://eventlybackend.onrender.com${image_event}`} alt={name} />
 
                 <div>
                     <h2>{name}</h2>
