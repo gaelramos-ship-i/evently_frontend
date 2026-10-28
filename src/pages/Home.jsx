@@ -1,6 +1,6 @@
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import Account from '../components/account'
+import Account from '../components/Account'
 import '../styles/home.scss'
 import { useEffect, useState } from "react";
 import EventCard from '../components/EventCard';
