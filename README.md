@@ -1,16 +1,79 @@
-# React + Vite
+# Evently — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Evently est une application web communautaire dédiée à la découverte et au partage d'événements culturels. Les visiteurs peuvent consulter les événements et les utilisateurs connectés peuvent publier leurs propres événements et gérer leurs favoris.
 
-Currently, two official plugins are available:
+Ce dépôt contient la partie **frontend** du projet réalisé dans le cadre de ma formation Développeur Web et Web Mobile (DWWM).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Technologies
 
-## React Compiler
+- React
+- Vite
+- JavaScript
+- Sass / SCSS
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Prérequis
 
-## Expanding the ESLint configuration
+- Node.js et npm installés
+- L'API Evently accessible, en local ou en ligne
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Installation
+
+```bash
+git clone https://github.com/gaelramos-ship-i/evently_frontend.git
+npm install
+```
+
+Créer un fichier `.env` à la racine, à partir de `.env.example` :
+
+Renseigner l'URL de l'API backend :
+
+```dotenv
+VITE_BASE_URL=http://localhost:PORT_BACKEND
+```
+
+## Démarrer l'application
+
+```bash
+npm run dev
+```
+
+Ouvrir l'adresse affichée dans le terminal par Vite (généralement `http://localhost:5173`).
+
+## Autres commandes
+
+```bash
+npm run build    # Générer la version de production
+npm run preview  # Prévisualiser le build
+```
+
+## Fonctionnalités principales
+
+- Consulter les événements culturels
+- Rechercher des événements
+- Créer un compte et se connecter
+- Publier, modifier et supprimer ses propres événements
+- Ajouter ou retirer des événements de ses favoris
+
+Ces fonctionnalités correspondent au périmètre visé du projet ; leur fonctionnement dépend de la disponibilité de l'API.
+
+## Organisation du dépôt
+
+```text
+public/          Ressources publiques
+src/             Code source React
+index.html       Point d'entrée HTML
+vite.config.js   Configuration Vite
+eslint.config.js Configuration ESLint
+vercel.json      Configuration de déploiement
+.env.example     Exemple de configuration
+```
+
+## Backend
+
+L'interface communique avec l'API du projet :
+
+https://github.com/gaelramos-ship-i/eventlyBackend
+
+## Auteur
+
+Gaël Ramos — Projet de formation DWWM.

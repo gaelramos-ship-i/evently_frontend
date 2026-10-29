@@ -98,6 +98,7 @@ const Home = () => {
   useEffect(() => {
     const getEvents = async () => {
       setLoading(true)
+      const startTime = Date.now(); // À déclarer ici
       try {
         const response = await fetch(
           `${import.meta.env.VITE_BASE_URL}/event`
@@ -115,7 +116,13 @@ const Home = () => {
           message: error.message
         });
       } finally {
-        setLoading(false);
+
+        const elapsedTime = Date.now() - startTime;
+        const remainingTime = Math.max(0, 1500 - elapsedTime);
+
+        setTimeout(() => {
+          setLoading(false);
+        }, remainingTime);
       }
     }
     getEvents()
@@ -157,17 +164,20 @@ const Home = () => {
           </div>
 
           {status && (
-            <p 
-            id="status-message"
-            className={status.type === 'ok' ? 'green' : 'red'}>
+            <p
+              id="status-message"
+              className={status.type === 'ok' ? 'green' : 'red'}>
               {status.message}
             </p>
           )}
 
           <div id="project-list">
             {loading ? (
-              <p>Chargement des événements...</p>
-            ) : filteredEvents.length > 0 ? (
+              <div className="loader-container">
+                <div className="loader"></div>
+              </div>
+            ) : ( 
+              filteredEvents.length > 0 ? (
               filteredEvents.map((event) => (
                 <EventCard
                   key={event.id_event}
@@ -188,6 +198,7 @@ const Home = () => {
               ))
             ) : (
               <p id='message'>Aucun événement ne correspond à votre recherche.</p>
+            )
             )}
           </div>
         </section>
