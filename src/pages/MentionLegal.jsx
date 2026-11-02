@@ -129,7 +129,7 @@ export default function MentionsLegales() {
                         </p>
                     </section>
 
-                    <section className="legal-section">
+                    <section className="legal-section" id='cgu'>
                         <h2>
                             4. Conditions générales d'utilisation (CGU)
                         </h2>

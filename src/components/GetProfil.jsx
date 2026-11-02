@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-function GetProfil() {
-    const [user, setUser] = useState([])
-    const [events, setEvents] = useState([])
-    const [favorites, setFavorites] = useState([])
+function GetProfil({ events, favorites }) {
+    const [user, setUser] = useState({}) 
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -26,29 +24,6 @@ function GetProfil() {
                 }
                 const data = await response.json()
                 setUser(data)
-
-                const [eventsResponse, favoritesResponse] = await Promise.all([
-                    fetch(`${import.meta.env.VITE_BASE_URL}/event/user`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    }),
-                    fetch(`${import.meta.env.VITE_BASE_URL}/fav/get`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    })
-                ])
-
-                if (!eventsResponse.ok || !favoritesResponse.ok) {
-                    throw new Error("Erreur lors de la récupération des événements ou favoris")
-                }
-
-                const eventsData = await eventsResponse.json()
-                const favoritesData = await favoritesResponse.json()
-
-                setEvents(eventsData.eventUser)
-                setFavorites(favoritesData)
 
             } catch (err) {
                 console.error(err)

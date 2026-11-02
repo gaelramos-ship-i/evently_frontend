@@ -1,101 +1,20 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import EventCard from "./EventCard"
 import { useNavigate } from "react-router-dom"
 import ModalConfirm from "./ModalConfirm"
 
-function EventUser() {
-    const [events, setEvents] = useState([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
+function EventUser({ events, setEvents, loading, error }) {
+
     const [eventToDelete, setEventToDelete] = useState(null)
     const [deleting, setDeleting] = useState(false)
 
+    const [deleteError, setDeleteError] = useState(null)
     const navigate = useNavigate()
 
-    useEffect(() => {
-        const getEvents = async () => {
-            const token = localStorage.getItem("token")
-
-            if (!token) {
-                setError("Vous devez être connecté.")
-                setLoading(false)
-                return
-            }
-
-            try {
-                const response = await fetch(
-                    `${import.meta.env.VITE_BASE_URL}/event/user`,
-                    {
-                        method: "GET",
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                )
-
-                const data = await response.json()
-
-                if (!response.ok) {
-                    throw new Error("Impossible de récupérer vos événements")
-                }
-
-                setEvents(data.eventUser);
-            } catch (err) {
-                setError(err.message);
-            }
-            finally {
-                setLoading(false);
-
-            }
-        }
-        getEvents()
-    }, [])
 
     const updateEvent = (id) => {
         navigate(`/update?id=${id}`)
     }
-
-    // const deleteEvent = async (id) => {
-
-    //     const confirmDelete = window.confirm(
-    //         "Êtes-vous sûr de vouloir supprimer définitivement cet événement ?"
-    //     );
-
-
-    //     if (!confirmDelete) {
-    //         return;
-    //     }
-    //     const token = localStorage.getItem("token")
-
-    //     if (!token) {
-    //         setError("Vous devez être connecté.")
-    //         setLoading(false)
-    //         return
-    //     }
-
-    //     try {
-    //         const response = await fetch(
-    //             `${import.meta.env.VITE_BASE_URL}/event/${id}`,
-    //             {
-    //                 method: "DELETE",
-    //                 headers: {
-    //                     Authorization: `Bearer ${token}`,
-    //                 },
-    //             }
-    //         )
-
-    //         if (!response.ok) {
-    //             throw new Error("Impossible de supprimer cet événement.");
-    //         }
-
-    //         setEvents((prevEvents) =>
-    //             prevEvents.filter((event) => event.id_event !== id)
-    //         );
-
-    //     } catch (err) {
-    //         setError(err.message)
-    //     }
-    // }
 
     const askDeleteEvent = (id) => {
         setEventToDelete(id)
@@ -107,7 +26,7 @@ function EventUser() {
         const token = localStorage.getItem("token")
 
         if (!token) {
-            setError("Vous devez être connecté.")
+            setDeleteError("Vous devez être connecté.")
             setEventToDelete(null)
             return
         }
@@ -138,7 +57,7 @@ function EventUser() {
             setEventToDelete(null)
 
         } catch (err) {
-            setError(err.message)
+            setDeleteError(err.message)
         } finally {
             setDeleting(false)
         }
@@ -155,6 +74,7 @@ function EventUser() {
     return (
         <div id="eventUser">
             <h2>Mes événements</h2>
+            {deleteError && <p>{deleteError}</p>}
             {events.length === 0 ? (
                 <p>Vous n'avez créé aucun événement.</p>
             ) : (

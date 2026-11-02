@@ -171,8 +171,8 @@ function FormEvent({ eventToEdit = null }) {
                         <option value="Concert">Concert</option>
                         <option value="Festival">Festival</option>
                         <option value="Cinéma">Cinéma</option>
-                        <option value="Conférence">Exposition</option>
-                        <option value="Gaming">Sport</option>
+                        <option value="Exposition">Exposition</option>
+                        <option value="Sport">Sport</option>
                         <option value="Autre">Autre</option>
                     </select>
                     <input

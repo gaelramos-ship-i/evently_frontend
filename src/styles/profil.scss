@@ -87,7 +87,9 @@
 }
 
 #eventUser {
-    padding-bottom: 40px;
+    >div{
+        padding-bottom: 40px;
+    }
 
     >h2 {
         font-size: 36px;

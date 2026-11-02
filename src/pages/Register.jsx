@@ -89,7 +89,7 @@ export default function Register() {
             <p> Vos données personnelles sont utilisées pour créer et gérer votre compte et assurer le
               fonctionnement d’Evently. Pour en savoir plus sur les données collectées, leur utilisation, vos
               droits, consultez notre Politique de confidentialité.</p>
-              <div>
+            <div>
               <input
                 type="checkbox"
                 id="cgu"
@@ -100,10 +100,7 @@ export default function Register() {
               />
 
               <label htmlFor="cgu">
-                J'ai lu et j'accepte les{' '}
-                <Link to="/cgu" target="_blank">
-                  Conditions générales d'utilisation
-                </Link>
+                J'ai lu et j'accepte les Conditions générales d'utilisation
               </label>
             </div>
           </div>
