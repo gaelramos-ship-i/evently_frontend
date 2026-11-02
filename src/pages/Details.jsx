@@ -3,6 +3,7 @@ import Footer from '../components/Footer'
 import { useSearchParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import '../styles/details.scss'
+import getImageUrl from '../utils/getImageUrl'
 
 function Details() {
     const [searchParams] = useSearchParams()
@@ -64,7 +65,7 @@ function Details() {
                 <section id='details'>
                     <div>
                         <div>
-                            <img src={`${import.meta.env.VITE_ASSETS_URL}${event.image_event}`} alt={event.name} />
+                            <img src={`${getImageUrl(event.image_event)}`} alt={event.name} />
                             <p className='type'>{event.type_event}</p>
                             <h1>{event.name_event}</h1>
                             <p> Date : {event.date_event} </p>
