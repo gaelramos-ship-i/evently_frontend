@@ -164,7 +164,7 @@
         padding: 10px 20px;
         border-radius: 10px;
         background: $orange;
-        color: #fff;
+        color: #2b2b2b;
         border: none;
         transition: 0.3s ease-out;
 
@@ -176,6 +176,7 @@
     button:nth-child(1) {
         background: transparent;
         border: 1px solid $white;
+        color: $white;
     }
 
     #btns {
