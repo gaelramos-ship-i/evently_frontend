@@ -2,5 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://evently-frontend-indol.vercel.app/</loc>
+    <loc>https://evently-frontend-indol.vercel.app/login</loc>
+    <loc>https://evently-frontend-indol.vercel.app/register</loc>
+    <loc>https://evently-frontend-indol.vercel.app/mentions-legales</loc>
+    <loc>https://evently-frontend-indol.vercel.app/forgot-password</loc>
+    <loc>https://evently-frontend-indol.vercel.app/reset-password</loc>
+    <!-- <loc>https://evently-frontend-indol.vercel.app/details?id=61</loc> -->
   </url>
 </urlset>
