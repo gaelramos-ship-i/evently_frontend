@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -23,6 +23,14 @@ const Home = () => {
   } = useFavorites(navigate)
   const displayedStatus = favoriteStatus || eventsStatus
   const filteredEvents = useFilteredEvents(events, search, category)
+
+  const [visibleCount, setVisibleCount] = useState(6)
+  const visibleEvents = filteredEvents.slice(0, visibleCount)
+  const hasMoreEvents = visibleCount < filteredEvents.length
+
+  useEffect(() => {
+    setVisibleCount(6)
+  }, [search, category])
 
   return (
     <>
@@ -53,13 +61,21 @@ const Home = () => {
 
           <div id="project-list">
             <EventList
-              events={filteredEvents}
+              events={visibleEvents}
               loading={loading}
               favorite={favorite}
               onAddFavorite={addFavorite}
               onDeleteFavorite={deleteFavorite}
             />
           </div>
+          {hasMoreEvents && (
+            <button
+              type="button"
+              onClick={() => setVisibleCount((count) => count + 6)}
+            >
+              Voir plus
+            </button>
+          )}
         </section>
       </main>
       <Footer />
