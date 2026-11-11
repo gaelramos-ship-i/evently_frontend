@@ -64,7 +64,14 @@ function EventUser({ events, setEvents, loading, error }) {
     }
 
     if (loading) {
-        return <p>Chargement...</p>
+        return (
+            <div id="eventUser">
+                <h2>Mes événements</h2>
+                <div className="loader-container">
+                    <div className="loader" />
+                </div>
+            </div>
+        )
     }
 
     if (error) {

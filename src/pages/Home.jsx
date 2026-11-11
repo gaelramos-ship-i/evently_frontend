@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -28,9 +28,6 @@ const Home = () => {
   const visibleEvents = filteredEvents.slice(0, visibleCount)
   const hasMoreEvents = visibleCount < filteredEvents.length
 
-  useEffect(() => {
-    setVisibleCount(6)
-  }, [search, category])
 
   return (
     <>
@@ -45,9 +42,15 @@ const Home = () => {
         <section id='search'>
           <EventFilters
             search={search}
-            onSearchChange={setSearch}
+            onSearchChange={(value) => {
+              setSearch(value)
+              setVisibleCount(6)
+            }}
             category={category}
-            onCategoryChange={setCategory}
+            onCategoryChange={(value) => {
+              setCategory(value)
+              setVisibleCount(6)
+            }}
           />
 
           {displayedStatus && (
@@ -70,6 +73,7 @@ const Home = () => {
           </div>
           {hasMoreEvents && (
             <button
+              className="show-more-button"
               type="button"
               onClick={() => setVisibleCount((count) => count + 6)}
             >
