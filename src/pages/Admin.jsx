@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import getImageUrl from '../utils/getImageUrl'
+import '../styles/admin.scss'
 
 export default function Admin() {
     const [events, setEvents] = useState([])
