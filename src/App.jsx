@@ -13,6 +13,9 @@ import EditProfil from "./pages/EditProfil";
 import ResetPassword from "./pages/ResetPassword";
 import ForgotPassword from "./pages/ForgotPassword";
 import MentionsLegales from "./pages/MentionLegal";
+import Admin from "./pages/Admin"
+
+import AdminRoute from "./components/AdminRoute";
 
 const App = () => {
   return (
@@ -23,6 +26,9 @@ const App = () => {
           <Route path="/update" element={<EditEvent />} />
           <Route path="/updateProfil" element={<EditProfil />} />
           <Route path="/create" element={<Create />} />
+        </Route>
+        <Route element={<AdminRoute />}>
+          <Route path="/admin" element={<Admin />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/details" element={<Details />} />
