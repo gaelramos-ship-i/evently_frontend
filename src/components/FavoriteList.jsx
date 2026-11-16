@@ -5,11 +5,7 @@ const FavoriteList = ({ favorites, loading, error, status, onDeleteFavorite }) =
     return (
       <>
         <h2>Mes favoris</h2>
-        <div id="cards-container" className="skeleton-grid" aria-hidden="true">
-          {[1, 2, 3].map((item) => (
-            <div className="skeleton-card" key={item} />
-          ))}
-        </div>
+        <p aria-live="polite">Chargement des favoris…</p>
       </>
     )
   }
