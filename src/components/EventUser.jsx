@@ -5,6 +5,9 @@ import ModalConfirm from "./ModalConfirm"
 
 function EventUser({ events, setEvents, loading, error }) {
 
+    const [visibleCount, setVisibleCount] = useState(3)
+    const visibleEvents = events.slice(0, visibleCount)
+
     const [eventToDelete, setEventToDelete] = useState(null)
     const [deleting, setDeleting] = useState(false)
 
@@ -88,7 +91,7 @@ function EventUser({ events, setEvents, loading, error }) {
                 <p>Vous n'avez créé aucun événement.</p>
             ) : (
                 <div id="cards-container">
-                    {events.map((event) => (
+                    {visibleEvents.map((event) => (
                         <div key={event.id_event}>
                             <EventCard
                                 id={event.id_event}
@@ -109,6 +112,15 @@ function EventUser({ events, setEvents, loading, error }) {
                             />
                         </div>
                     ))}
+                    {visibleCount < events.length && (
+                        <button
+                            className="show-more-button"
+                            type="button"
+                            onClick={() => setVisibleCount((count) => count + 3)}
+                        >
+                            Voir plus
+                        </button>
+                    )}
                     <ModalConfirm
                         isOpen={eventToDelete !== null}
                         eventName={

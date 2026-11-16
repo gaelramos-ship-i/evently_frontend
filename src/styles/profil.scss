@@ -210,6 +210,27 @@
     }
 }
 
+#eventUser .show-more-button {
+    display: block;
+    margin: 0 auto 40px;
+    padding: 13px 32px;
+    border: 2px solid $orange;
+    border-radius: 999px;
+    background: $orange;
+    color: #2b2b2b;
+    font-family: $fredoka;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: $easeOut;
+    grid-column: 1 / -1;
+    justify-self: center;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
 @media screen and (max-width: 1024px) {
     #favoris>div #cards-container {
         grid-template-columns: repeat(2, 1fr);
