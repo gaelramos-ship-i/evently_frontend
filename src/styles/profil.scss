@@ -103,6 +103,10 @@
         padding-bottom: 20px;
     }
 
+    button:nth-child(2){
+        color: #2b2b2b;
+    }
+
     button {
         border-radius: 20px;
         border: none;
@@ -168,7 +172,7 @@
                 padding: 14px;
                 border: none;
                 background: $orange;
-                color: $white;
+                color: #2b2b2b;
                 transition: $easeOut;
 
                 &:hover {

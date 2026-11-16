@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { preload } from "react-dom";
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -11,6 +12,8 @@ import EventList from '../components/EventList'
 import '../styles/home.scss'
 
 const Home = () => {
+  preload('/img/concert_random.webp', { as: 'image', fetchPriority: 'high' })
+
   const [search, setSearch] = useState("");
   const { events, loading, status: eventsStatus } = useEvents();
   const [category, setCategory] = useState('Tous')

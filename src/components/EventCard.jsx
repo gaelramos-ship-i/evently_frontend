@@ -33,6 +33,7 @@ const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite
                 <img src={`${getImageUrl(image_event)}`}
                     alt={name}
                     fetchPriority={imagePriority ? "high" : "auto"}
+                    loading={imagePriority ? "eager" : "lazy"}
                 />
 
                 <div>

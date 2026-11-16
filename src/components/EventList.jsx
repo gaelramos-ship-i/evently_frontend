@@ -19,7 +19,7 @@ const EventList = ({
     return <p id="message">Aucun événement ne correspond à votre recherche.</p>
   }
 
-  return events.map((event) => (
+  return events.map((event, index) => (
     <EventCard
       key={event.id_event}
       id={event.id_event}
@@ -35,6 +35,7 @@ const EventList = ({
       onAddFavorite={onAddFavorite}
       onDeleteFavorite={onDeleteFavorite}
       image_event={event.image_event}
+      imagePriority={index === 0}
     />
   ))
 }
