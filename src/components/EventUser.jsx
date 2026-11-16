@@ -91,7 +91,7 @@ function EventUser({ events, setEvents, loading, error }) {
                 <p>Vous n'avez créé aucun événement.</p>
             ) : (
                 <div id="cards-container">
-                    {visibleEvents.map((event) => (
+                    {visibleEvents.map((event, index) => (
                         <div key={event.id_event}>
                             <EventCard
                                 id={event.id_event}
@@ -104,6 +104,7 @@ function EventUser({ events, setEvents, loading, error }) {
                                 address={event.address_event}
                                 description={event.description_event}
                                 image_event={event.image_event}
+                                imagePriority={index === 0}
                                 showUpdate={true}
                                 showDelEvent={true}
                                 showFavorite={false}
