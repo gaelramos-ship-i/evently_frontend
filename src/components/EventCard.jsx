@@ -1,5 +1,5 @@
 import getImageUrl from '../utils/getImageUrl'
-const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite, onDeleteFavorite, isFavorite = false, showDelete = false, image_event, showUpdate = false, showDelEvent = false, onUpdatePage, onDeleteEvent, showFavorite = true }) => {
+const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite, onDeleteFavorite, isFavorite = false, showDelete = false, image_event, showUpdate = false, showDelEvent = false, onUpdatePage, onDeleteEvent, showFavorite = true, imagePriority = false }) => {
 
     const handleFavorite = (e) => {
         e.preventDefault();
@@ -30,7 +30,10 @@ const EventCard = ({ name, date, address, description, id, idUser, onAddFavorite
     return (
         <article>
             <a href={`/details?id=${id}`}>
-                <img src={`${getImageUrl(image_event)}`} alt={name} />
+                <img src={`${getImageUrl(image_event)}`}
+                    alt={name}
+                    fetchPriority={imagePriority ? "high" : "auto"}
+                />
 
                 <div>
                     <h2>{name}</h2>

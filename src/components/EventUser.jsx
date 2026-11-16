@@ -67,8 +67,10 @@ function EventUser({ events, setEvents, loading, error }) {
         return (
             <div id="eventUser">
                 <h2>Mes événements</h2>
-                <div className="loader-container">
-                    <div className="loader" />
+                <div id="cards-container" className="skeleton-grid" aria-hidden="true">
+                    {[1, 2, 3].map((item) => (
+                        <div className="skeleton-card" key={item} />
+                    ))}
                 </div>
             </div>
         )

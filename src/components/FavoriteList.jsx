@@ -5,8 +5,10 @@ const FavoriteList = ({ favorites, loading, error, status, onDeleteFavorite }) =
     return (
       <>
         <h2>Mes favoris</h2>
-        <div className="loader-container">
-          <div className="loader" />
+        <div id="cards-container" className="skeleton-grid" aria-hidden="true">
+          {[1, 2, 3].map((item) => (
+            <div className="skeleton-card" key={item} />
+          ))}
         </div>
       </>
     )
@@ -24,7 +26,7 @@ const FavoriteList = ({ favorites, loading, error, status, onDeleteFavorite }) =
 
       {!error && (
         <div id="cards-container">
-          {favorites.map((event) => (
+          {favorites.map((event, index) => (
             <EventCard
               key={event.id_event}
               id={event.id_event}
@@ -40,6 +42,7 @@ const FavoriteList = ({ favorites, loading, error, status, onDeleteFavorite }) =
               onDeleteFavorite={onDeleteFavorite}
               showUpdate={false}
               image_event={event.image_event}
+              imagePriority={index === 0}
             />
           ))}
         </div>
