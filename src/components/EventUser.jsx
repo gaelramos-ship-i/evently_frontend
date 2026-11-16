@@ -85,26 +85,28 @@ function EventUser({ events, setEvents, loading, error }) {
             {events.length === 0 ? (
                 <p>Vous n'avez créé aucun événement.</p>
             ) : (
-                <div id="cards-container"> {events.map((event) => (
-                    <EventCard
-                        key={event.id_event}
-                        id={event.id_event}
-                        name={event.name_event}
-                        date={new Date(event.date_event).toLocaleDateString('fr-FR', {
-                            day: 'numeric',
-                            month: 'long',
-                            year: 'numeric'
-                        })}
-                        address={event.address_event}
-                        description={event.description_event}
-                        image_event={event.image_event}
-                        showUpdate={true}
-                        showDelEvent={true}
-                        showFavorite={false}
-                        onUpdatePage={updateEvent}
-                        onDeleteEvent={askDeleteEvent}
-                    />
-                ))}
+                <div id="cards-container">
+                    {events.map((event) => (
+                        <div key={event.id_event}>
+                            <EventCard
+                                id={event.id_event}
+                                name={event.name_event}
+                                date={new Date(event.date_event).toLocaleDateString('fr-FR', {
+                                    day: 'numeric',
+                                    month: 'long',
+                                    year: 'numeric'
+                                })}
+                                address={event.address_event}
+                                description={event.description_event}
+                                image_event={event.image_event}
+                                showUpdate={true}
+                                showDelEvent={true}
+                                showFavorite={false}
+                                onUpdatePage={updateEvent}
+                                onDeleteEvent={askDeleteEvent}
+                            />
+                        </div>
+                    ))}
                     <ModalConfirm
                         isOpen={eventToDelete !== null}
                         eventName={

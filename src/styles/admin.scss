@@ -98,3 +98,78 @@
         }
     }
 }
+
+#admin-page {
+    .admin-users-section {
+        margin-top: 60px;
+        padding-top: 40px;
+        border-top: 1px solid $sand;
+    }
+
+    .admin-users {
+        display: grid;
+        gap: 16px;
+    }
+
+    .admin-user {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+        background: $white;
+        border: 1px solid $sand;
+        border-radius: 16px;
+
+        h2 {
+            color: $darkBlue;
+            font-family: $fredoka;
+            font-size: 21px;
+            margin-bottom: 6px;
+        }
+
+        p {
+            color: $blue;
+            margin-bottom: 10px;
+        }
+
+        &__role {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 999px;
+            background: $offWhite;
+            color: $darkBlue;
+            font-size: 14px;
+
+            &--admin {
+                background: $darkBlue;
+                color: $white;
+            }
+        }
+
+        &__actions {
+            display: flex;
+            gap: 10px;
+
+            button {
+                min-height: 42px;
+                padding: 0 14px;
+                border: 0;
+                border-radius: 10px;
+                background: $blue;
+                color: $white;
+                font: inherit;
+                cursor: pointer;
+
+                &:disabled {
+                    opacity: 0.55;
+                    cursor: not-allowed;
+                }
+            }
+
+            .admin-user__delete {
+                background: $orange;
+            }
+        }
+    }
+}
