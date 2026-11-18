@@ -16,6 +16,7 @@ import MentionsLegales from "./pages/MentionLegal";
 import Admin from "./pages/Admin"
 
 import AdminRoute from "./components/AdminRoute";
+import ConsentBanner from "./components/ConsentBanner";
 
 const App = () => {
   return (
@@ -39,6 +40,7 @@ const App = () => {
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <ConsentBanner />
     </Router>
   )
 }

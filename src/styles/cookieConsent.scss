@@ -1,0 +1,25 @@
+.privacy-dialog {
+  position: fixed;
+  z-index: 10000;
+  right: 20px;
+  bottom: 80px;
+  width: min(520px, calc(100% - 40px));
+  padding: 24px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px #0003;
+
+  p {
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  button {
+    padding: 10px 14px;
+    margin-right: 8px;
+    border: 1px solid #24324a;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
