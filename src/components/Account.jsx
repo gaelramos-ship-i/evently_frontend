@@ -1,8 +1,22 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { HashLink } from "react-router-hash-link";
 
 function Account() {
     const navigate = useNavigate()
+    const [session, setSession] = useState('checking')
+
+    useEffect(() => {
+        fetch(`${import.meta.env.VITE_BASE_URL}/auth/user`, {
+            credentials: 'include',
+        })
+            .then((response) => {
+                setSession(response.ok ? 'authenticated' : 'guest')
+            })
+            .catch(() => {
+                setSession('guest')
+            })
+    }, [])
     return (
         <section id="account">
             <div>
@@ -12,9 +26,11 @@ function Account() {
                     <HashLink smooth to="/#search">
                         <button>Explorer les événements</button>
                     </HashLink>
-                    <button onClick={() => navigate("/register")}>
-                        Créer un compte
-                    </button>
+                    {session === 'guest' && (
+                        <button onClick={() => navigate("/register")}>
+                            Créer un compte
+                        </button>
+                    )}
                 </div>
             </div>
         </section>
