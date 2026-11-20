@@ -26,13 +26,13 @@ export default function Register() {
     try {
       const res = await fetch(API_URL, {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.message || 'Erreur serveur')
 
-      localStorage.setItem('token', data.token)
       navigate('/')
     } catch (err) {
       setError(err.message)

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Outlet, Navigate } from "react-router-dom";
 
 import Home from './pages/Home'
 import Details from "./pages/Details"
@@ -17,6 +17,31 @@ import Admin from "./pages/Admin"
 
 import AdminRoute from "./components/AdminRoute";
 import ConsentBanner from "./components/ConsentBanner";
+import { useEffect, useState } from "react";
+
+const GuestRoutes = () => {
+  const [session, setSession] = useState('checking')
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_BASE_URL}/auth/user`, {
+      credentials: 'include',
+    })
+      .then((response) => {
+        setSession(response.ok ? 'authenticated' : 'guest')
+      })
+      .catch(() => {
+        setSession('guest')
+      })
+  }, [])
+
+  if (session === 'checking') {
+    return <p>Vérification de la session…</p>
+  }
+
+  return session === 'authenticated'
+    ? <Navigate to="/" replace />
+    : <Outlet />
+}
 
 const App = () => {
   return (
@@ -33,8 +58,10 @@ const App = () => {
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/details" element={<Details />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route element={<GuestRoutes />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/mentions-legales" element={<MentionsLegales />} />

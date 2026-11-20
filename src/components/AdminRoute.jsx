@@ -6,20 +6,11 @@ export default function AdminRoute() {
 
     useEffect(() => {
         const checkAdmin = async () => {
-            const token = localStorage.getItem('token')
-
-            if (!token) {
-                setAccess('unauthorized')
-                return
-            }
-
             try {
                 const response = await fetch(
                     `${import.meta.env.VITE_BASE_URL}/auth/user`,
                     {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
+                        credentials: 'include'
                     }
                 )
 

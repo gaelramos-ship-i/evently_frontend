@@ -8,8 +8,6 @@ import GetProfil from '../components/GetProfil'
 // import FormEvent from '../components/FormEvent'
 
 export default function Profil() {
-    const token = localStorage.getItem('token')
-
     const [events, setEvents] = useState([])
     const [eventsLoading, setEventsLoading] = useState(true)
     const [eventsError, setEventsError] = useState(null)
@@ -22,18 +20,10 @@ export default function Profil() {
 
     useEffect(() => {
         const getEvents = async () => {
-            const token = localStorage.getItem('token')
-
-            if (!token) {
-                setEventsError('Vous devez être connecté.')
-                setEventsLoading(false)
-                return
-            }
-
             try {
                 const response = await fetch(
                     `${import.meta.env.VITE_BASE_URL}/event/user`,
-                    { headers: { Authorization: `Bearer ${token}` } }
+                    { credentials: 'include' }
                 )
 
                 const data = await response.json()
@@ -60,9 +50,9 @@ export default function Profil() {
                 `${import.meta.env.VITE_BASE_URL}/fav/${eventId}`,
                 {
                     method: "DELETE",
+                    credentials: 'include',
                     headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json"
                     }
                 }
             );
@@ -90,14 +80,10 @@ export default function Profil() {
             setLoading(true)
             setError(null)
 
-            const token = localStorage.getItem('token')
-
             try {
                 const res = await fetch(API_URL, {
                     method: 'GET',
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    }
+                    credentials: 'include',
                 })
 
                 const data = await res.json()

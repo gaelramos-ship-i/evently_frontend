@@ -4,8 +4,6 @@ import '../styles/formEvent.scss'
 function FormEvent({ eventToEdit = null }) {
     const isEditing = Boolean(eventToEdit)
 
-    const token = localStorage.getItem('token')
-
     const [file, setFile] = useState(null)
     const [preview, setPreview] = useState(null)
     const [status, setStatus] = useState(null)
@@ -50,9 +48,9 @@ function FormEvent({ eventToEdit = null }) {
         try {
             const res = await fetch(API_URL, {
                 method: isEditing ? 'PATCH' : 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify({
                     name: name.trim(),
@@ -87,9 +85,7 @@ function FormEvent({ eventToEdit = null }) {
                     `${import.meta.env.VITE_BASE_URL}/event/${idEvent}/image`,
                     {
                         method: 'PATCH',
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
+                        credentials: 'include',
                         body: formData,
                     }
                 )

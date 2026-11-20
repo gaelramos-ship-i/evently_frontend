@@ -14,16 +14,10 @@ function EditEvent() {
 
     useEffect(() => {
         const fetchEvent = async () => {
-            const token = localStorage.getItem('token')
-
             try {
                 const res = await fetch(
                     `${import.meta.env.VITE_BASE_URL}/event/${idEvent}`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
+                    { credentials: 'include' }
                 )
 
                 const data = await res.json()

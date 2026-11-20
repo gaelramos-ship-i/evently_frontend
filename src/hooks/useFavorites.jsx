@@ -6,20 +6,14 @@ const useFavorites = (navigate) => {
 
     const addFavorite = async (idUser, eventId) => {
         try {
-            const currentToken = localStorage.getItem('token')
-
-            if (!currentToken) {
-                navigate('/login')
-                return
-            }
 
             const response = await fetch(
                 `${import.meta.env.VITE_BASE_URL}/fav/${eventId}`,
                 {
                     method: 'POST',
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json',
-                        Authorization: `Bearer ${currentToken}`,
                     },
                     body: JSON.stringify({
                         id_event: eventId,
@@ -27,6 +21,11 @@ const useFavorites = (navigate) => {
                     }),
                 }
             )
+
+            if (response.status === 401) {
+                navigate('/login')
+                return
+            }
 
             const data = await response.json()
 
@@ -42,21 +41,21 @@ const useFavorites = (navigate) => {
 
     const deleteFavorite = async (eventId) => {
         try {
-            const token = localStorage.getItem('token')
-            if (!token) {
-                navigate('/login')
-                return
-            }
             const response = await fetch(
                 `${import.meta.env.VITE_BASE_URL}/fav/${eventId}`,
                 {
                     method: 'DELETE',
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`,
                     },
                 }
             )
+
+            if (response.status === 401) {
+                navigate('/login')
+                return
+            }
 
             const data = await response.json()
 

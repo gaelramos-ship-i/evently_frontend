@@ -8,14 +8,10 @@ function GetProfil({ events, favorites }) {
     useEffect(() => {
         const getUser = async () => {
             try {
-                const token = localStorage.getItem('token')
-
                 const response = await fetch(
                     `${import.meta.env.VITE_BASE_URL}/auth/user`, {
                     method: 'GET',
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
+                    credentials: 'include',
                 }
                 )
 

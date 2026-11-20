@@ -26,14 +26,6 @@ function EventUser({ events, setEvents, loading, error }) {
     const deleteEvent = async () => {
         if (eventToDelete === null || deleting) return
 
-        const token = localStorage.getItem("token")
-
-        if (!token) {
-            setDeleteError("Vous devez être connecté.")
-            setEventToDelete(null)
-            return
-        }
-
         setDeleting(true)
 
         try {
@@ -41,9 +33,7 @@ function EventUser({ events, setEvents, loading, error }) {
                 `${import.meta.env.VITE_BASE_URL}/event/${eventToDelete}`,
                 {
                     method: "DELETE",
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
+                    credentials: 'include',
                 }
             )
 

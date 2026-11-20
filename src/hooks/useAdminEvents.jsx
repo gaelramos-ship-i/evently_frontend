@@ -8,16 +8,10 @@ function useAdminEvents() {
 
     useEffect(() => {
         const loadEvents = async () => {
-            const token = localStorage.getItem('token')
-
             try {
                 const response = await fetch(
                     `${import.meta.env.VITE_BASE_URL}/admin/pending`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
+                    { credentials: 'include' }
                 )
                 const data = await response.json()
 
@@ -39,7 +33,6 @@ function useAdminEvents() {
     }, [])
 
     const moderateEvent = async (idEvent, status) => {
-        const token = localStorage.getItem('token')
         setProcessingId(idEvent)
         setError('')
 
@@ -48,9 +41,9 @@ function useAdminEvents() {
                 `${import.meta.env.VITE_BASE_URL}/admin/${idEvent}/status`,
                 {
                     method: 'PATCH',
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`,
                     },
                     body: JSON.stringify({ status }),
                 }

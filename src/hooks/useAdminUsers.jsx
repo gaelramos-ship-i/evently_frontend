@@ -8,16 +8,10 @@ function useAdminUsers() {
 
     useEffect(() => {
         const loadUsers = async () => {
-            const token = localStorage.getItem('token')
-
             try {
                 const response = await fetch(
                     `${import.meta.env.VITE_BASE_URL}/admin/users`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
+                    { credentials: 'include' }
                 )
                 const data = await response.json()
 
@@ -39,7 +33,6 @@ function useAdminUsers() {
     }, [])
 
     const updateRole = async (user, role) => {
-        const token = localStorage.getItem('token')
         setProcessingUserId(user.id_user)
         setError('')
 
@@ -48,9 +41,9 @@ function useAdminUsers() {
                 `${import.meta.env.VITE_BASE_URL}/admin/users/${user.id_user}/role`,
                 {
                     method: 'PATCH',
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`,
                     },
                     body: JSON.stringify({ role }),
                 }
@@ -74,7 +67,6 @@ function useAdminUsers() {
     }
 
     const deleteUser = async (user) => {
-        const token = localStorage.getItem('token')
         setProcessingUserId(user.id_user)
         setError('')
 
@@ -83,9 +75,7 @@ function useAdminUsers() {
                 `${import.meta.env.VITE_BASE_URL}/admin/users/${user.id_user}`,
                 {
                     method: 'DELETE',
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
+                    credentials: 'include',
                 }
             )
             const data = await response.json()

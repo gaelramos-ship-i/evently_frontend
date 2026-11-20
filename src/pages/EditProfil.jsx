@@ -13,19 +13,11 @@ function EditProfil() {
     useEffect(() => {
         const fetchProfil = async () => {
             try {
-                const token = localStorage.getItem("token");
-
-                if (!token) {
-                    throw new Error("Tu dois être connecté.");
-                }
-
                 const response = await fetch(
                     `${import.meta.env.VITE_BASE_URL}/auth/user`,
                     {
                         method: "GET",
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
+                        credentials: 'include',
                     }
                 );
 
@@ -56,13 +48,11 @@ function EditProfil() {
         setLoading(true)
 
         try {
-            const token = localStorage.getItem("token")
-
             const response = await fetch(`${import.meta.env.VITE_BASE_URL}/auth/update-profil`, {
                 method: "PUT",
+                credentials: 'include',
                 headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     name: name,
